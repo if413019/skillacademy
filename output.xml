@@ -1,424 +1,1099 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.2 (Python 3.9.6 on win32)" generated="20211126 00:07:05.521" rpa="false" schemaversion="2">
-<suite id="s1" name="TestSearch" source="C:\Users\LENOVO\skillacademy\Tests\SkillAcademy\Web\TestSearch.robot">
-<test id="s1-t1" name="Verify successful search on SkillAcademy">
-<kw name="Opening Browser" library="Common">
-<arg>${site_url}</arg>
-<arg>${browser}</arg>
-<kw name="Open Browser" library="SeleniumLibrary">
-<arg>${site_url}</arg>
-<arg>${browser}</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20211126 00:07:05.994" level="INFO">Opening browser 'Chrome' to base url 'https://skillacademy.com/'.</msg>
-<status status="PASS" starttime="20211126 00:07:05.994" endtime="20211126 00:07:12.396"/>
+<robot generator="Robot 4.1.2 (Python 3.9.6 on win32)" generated="20211126 01:07:05.273" rpa="false" schemaversion="2">
+<suite id="s1" name="TestSearchAPI" source="C:\Users\LENOVO\skillacademy\Tests\SkillAcademy\API\TestSearchAPI.robot">
+<test id="s1-t1" name="Verify GET courses with with specific page &amp; page size">
+<kw name="GET" library="REST">
+<arg>/skillacademy/discovery/search?page=${page}&amp;pageSize=${pageSize}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<status status="PASS" starttime="20211126 01:07:05.939" endtime="20211126 01:07:07.157"/>
 </kw>
-<kw name="Maximize Browser Window" library="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20211126 00:07:12.400" endtime="20211126 00:07:13.601"/>
+<kw name="String" library="REST">
+<arg>response body status</arg>
+<arg>success</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<status status="PASS" starttime="20211126 01:07:07.157" endtime="20211126 01:07:07.164"/>
 </kw>
-<status status="PASS" starttime="20211126 00:07:05.994" endtime="20211126 00:07:13.601"/>
+<kw name="String" library="REST">
+<arg>response body message</arg>
+<arg>success</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<status status="PASS" starttime="20211126 01:07:07.165" endtime="20211126 01:07:07.168"/>
 </kw>
-<kw name="Wait Until Homepage Successfuly Loaded" library="HomePage">
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${MenuCategories}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:13.604" endtime="20211126 00:07:14.478"/>
+<kw name="Integer" library="REST">
+<arg>response body data page</arg>
+<arg>${page}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<status status="PASS" starttime="20211126 01:07:07.169" endtime="20211126 01:07:07.171"/>
 </kw>
-<timeout value="5 seconds"/>
-<status status="PASS" starttime="20211126 00:07:13.603" endtime="20211126 00:07:14.478"/>
+<kw name="Integer" library="REST">
+<arg>response body data pageSize</arg>
+<arg>${pageSize}</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<status status="PASS" starttime="20211126 01:07:07.171" endtime="20211126 01:07:07.175"/>
 </kw>
-<kw name="Search For Courses" library="Common">
-<arg>${ValidCourseName}</arg>
-<kw name="Wait Until Navigation Bar Is Visible" library="Common">
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${SkillAcademyLogo}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:14.481" endtime="20211126 00:07:14.543"/>
+<kw name="Array" library="REST">
+<arg>response body data data</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON array.*</doc>
+<status status="PASS" starttime="20211126 01:07:07.179" endtime="20211126 01:07:07.198"/>
 </kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${EnterpriseLink}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:14.543" endtime="20211126 00:07:14.585"/>
+<kw name="Output Schema" library="REST" type="TEARDOWN">
+<tag>I/O</tag>
+<doc>*Outputs JSON Schema to terminal or a file.*</doc>
+<msg timestamp="20211126 01:07:07.199" level="INFO">
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "GET https://skillacademy.com/skillacademy/discovery/search",
+    "description": "TestSearchAPI: Verify GET courses with with specific page &amp; page size",
+    "default": true,
+    "examples": [],
+    "type": "object",
+    "properties": {
+        "request": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "null"
+                },
+                "query": {
+                    "type": "object",
+                    "properties": {
+                        "page": {
+                            "type": "string"
+                        },
+                        "pageSize": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "page",
+                        "pageSize"
+                    ]
+                }
+            }
+        },
+        "response": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "basePrice": {
+                                                "type": "integer"
+                                            },
+                                            "categories": {
+                                                "type": "array"
+                                            },
+                                            "courseDescription": {
+                                                "type": "string"
+                                            },
+                                            "courseName": {
+                                                "type": "string"
+                                            },
+                                            "courseSerial": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type": "string"
+                                            },
+                                            "imageUrl": {
+                                                "type": "string"
+                                            },
+                                            "instructors": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "description": {
+                                                            "type": "string"
+                                                        },
+                                                        "jobTitle": {
+                                                            "type": "string"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "profilePicture": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "description",
+                                                        "jobTitle",
+                                                        "name",
+                                                        "profilePicture"
+                                                    ]
+                                                }
+                                            },
+                                            "introductionVideoThumbnailURL": {
+                                                "type": "string"
+                                            },
+                                            "introductionVideoURL": {
+                                                "type": "string"
+                                            },
+                                            "isSubscribed": {
+                                                "type": "boolean"
+                                            },
+                                            "location": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "marketType": {
+                                                "type": "string"
+                                            },
+                                            "merchantSerial": {
+                                                "type": "string"
+                                            },
+                                            "price": {
+                                                "type": "integer"
+                                            },
+                                            "rating": {
+                                                "type": "integer"
+                                            },
+                                            "slug": {
+                                                "type": "string"
+                                            },
+                                            "tags": {
+                                                "type": "array"
+                                            },
+                                            "totalRating": {
+                                                "type": "integer"
+                                            },
+                                            "transactional": {
+                                                "type": "string"
+                                            },
+                                            "updatedAt": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "basePrice",
+                                            "categories",
+                                            "courseDescription",
+                                            "courseName",
+                                            "courseSerial",
+                                            "createdAt",
+                                            "imageUrl",
+                                            "instructors",
+                                            "introductionVideoThumbnailURL",
+                                            "introductionVideoURL",
+                                            "isSubscribed",
+                                            "location",
+                                            "marketType",
+                                            "merchantSerial",
+                                            "price",
+                                            "rating",
+                                            "slug",
+                                            "tags",
+                                            "totalRating",
+                                            "transactional",
+                                            "updatedAt"
+                                        ]
+                                    },
+                                    "default": [
+                                        {
+                                            "basePrice": 300000,
+                                            "categories": [],
+                                            "courseDescription": "Proses check In dan check out sebuah hotel merupakan materi yang sangat penting sebagai seorang frontliner. Front office / Kantor depan adalah wajah hotel yang pertama kali memberikan kesan hangat bagi tamu-tamunya, begitu juga kesan terakhir yang mampu untuk tamu mendatangkan kembali tamu serta anak keluarganya. &lt;br&gt;&lt;br&gt; &lt;b&gt; PERHATIAN &lt;/b&gt; &lt;br&gt; 1. Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun &lt;br&gt; 2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan &lt;br&gt; 3. Program pelatihan yang dibeli menggunakan Kartu Prakerja tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat &lt;br&gt; 4. Khusus untuk pengguna Kartu Prakerja, pastikan nama, alamat email, dan nomor HP yang terdaftar di Skill Academy sesuai dengan data Prakerja Anda. &lt;br&gt;&lt;br&gt; &lt;b&gt;Cara Redeem Voucher:&lt;/b&gt; &lt;br&gt; 1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher kamu. &lt;br&gt; 2. Lalu setelah itu, daftarkan diri kamu dan masukkan kode voucher di form yang telah disediakan &lt;br&gt; 2. Tim MyEduSolve akan menghubungi kamu untuk pelaksanaan kelas.",
+                                            "courseName": "Webinar: Perhotelan: Cara menghandle prosedur check in dan check out",
+                                            "courseSerial": "PROG-C798TBXW",
+                                            "createdAt": "2020-07-17 06:21:18.919288 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/MyEduSolve_Image.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "MyEduSolve is an edu-tech company focused on transforming Indonesia workforce through digital literacy. We offer a range of products which includes internationally recognized certifications, course preparations and digital literacy training.",
+                                                    "jobTitle": "",
+                                                    "name": "MyEduSolve",
+                                                    "profilePicture": "https://skillacademy-prod-image.skillacademy.com/offline-marketplace/Icon+MyEduSolve.png"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Check_in_Hotel.jpg",
+                                            "introductionVideoURL": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Check_in_Hotel_Large.jpg",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "DKI JAKARTA",
+                                                "KOTA JAKARTA BARAT"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-VLIIJTKR",
+                                            "price": 300000,
+                                            "rating": 0,
+                                            "slug": "webinar-perhotelan-cara-menghandle-prosedur-check-in-dan-check-out",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "2020-07-20 13:37:53.439155 +0000 UTC"
+                                        },
+                                        {
+                                            "basePrice": 250000,
+                                            "categories": [],
+                                            "courseDescription": "Jadwal: Sabtu, 1 Agustus 2020 &lt;br&gt; Pukul: 13.00 WIB -15.00 WIB &lt;br&gt; Platform: Zoom &lt;br&gt; Pemasaran adalah bidang yang pasti ada disetiap perusahaan.  Salah satu tugas pemasaran adalah membuat propopal produk untuk calon customer yaitu Perusahaan Pemerintah dan Swasta, ataupun perorangan.  Pelatihan ini adalah cara lain dalam membuat proposal dengan menggunakan Ms Power Point yang akan menjadi proposal maut, khususnya di era digital saat ini yang serba cepat, mudah, dan INDAH.  Pelatihan ini akan menjadi jawaban kebutuhan proposal kekinian.&lt;br&gt; &lt;br&gt; &lt;br&gt; PERHATIAN &lt;/b&gt; &lt;br&gt; 1. Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun, &lt;br&gt; 2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan, &lt;br&gt; 3. Program pelatihan yang dibeli menggunakan Kartu Prakerja tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelengara pelatihan berhak untuk tidak memberikan sertifikat, &lt;br&gt; 4. Khusus untuk kamu pengguna Kartu Prakerja, pastikan nama, alamat email, dan nomor HP yang kamu daftarkan di Skill Academy sesuai dengan data Prakerja kamu. &lt;br&gt; &lt;br&gt; &lt;b&gt; Cara Redeem Voucher &lt;/b&gt; 1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher Kamu, &lt;br&gt;  2. Setelah melakukan transaksi, daftarkan diri Anda dan masukkan kode voucher &lt;br&gt; 3. Tim ITECH akan menghubungi Anda untuk pelaksanaan kelas",
+                                            "courseName": "Webinar: Cara membuat Proposal Maut dengan Ms Power Point",
+                                            "courseSerial": "PROG-EQXWISFD",
+                                            "createdAt": "2020-05-20 13:19:15.6066 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/ITECH_Background.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "ITECH adalah Lembaga Pelatihan Komputer dan Bisnis Digital, fokus pada pembelajaran berbasis Digital sejak Tahun 2010 di Kota Metro - Lampung, menjadi Juara 1 Nasional tahun 2019 sebagai Lembaga Kursus terbaik.  ITECH sudah melaksanakan kelas ONLINE sejak tahun 2018 melalui platform www.kursusdaring.kemendikbud.go.id, dengan jurusan DIGITAL Marketing, Youtuber, Game Developer, Android Programming.",
+                                                    "jobTitle": "",
+                                                    "name": "Indonesian Technology (ITech)",
+                                                    "profilePicture": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/ITECH_icon.png"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/ITECH_small.jpg",
+                                            "introductionVideoURL": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/ITECH_Large.jpg",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "DKI JAKARTA",
+                                                "KOTA JAKARTA PUSAT"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-WGL1QT6D",
+                                            "price": 250000,
+                                            "rating": 0,
+                                            "slug": "webinar-cara-membuat-proposal-maut-dengan-ms-power-point",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "2020-07-29 06:39:26.009254 +0000 UTC"
+                                        },
+                                        {
+                                            "basePrice": 450000,
+                                            "categories": [],
+                                            "courseDescription": "Jadwal: Kamis, 13 Agustus 2020 &lt;br&gt; Pukul: 09.00 - 11.00 WIB &lt;br&gt; Platform: Zoom &lt;br&gt; Pentingnya desain grafis dalam pekerjaan telah menarik minat dan perhatian masyarakat. Sudah banyak sekali orang yang memilih profesi designer sebagai salah satu pekerjaan yang cukup menjanjikan. Kemampuan dalam bidang desain khususnya corel draw memang memberikan keuntungan serta peluang yang besar. Disini peserta akan belajar membuat desain logo, sticker, banner, desain kemasan/packaging, desain denah lokasi, undangan pernikahan, kartu nama, pamflet serta desain kaos.&lt;br&gt; &lt;br&gt; &lt;b&gt; PERHATIAN &lt;/b&gt; &lt;br&gt; 1. Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun, &lt;br&gt; 2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan, &lt;br&gt; 3. Program pelatihan yang dibeli menggunakan Kartu Prakerja tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat, &lt;br&gt; 4. Khusus untuk kamu pengguna Kartu Prakerja, pastikan nama, alamat email, dan nomor HP yang kamu daftarkan di Skill Academy sesuai dengan data Prakerja kamu. &lt;br&gt; &lt;br&gt; &lt;b&gt; Cara Redeem Voucher &lt;/b&gt; &lt;br&gt; 1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher Kamu, &lt;br&gt; 2.Setelah melakukan transaksi, daftarkan diri Anda dan masukkan kode voucher &lt;br&gt; 3. Tim YP FITRI AL BAASITU akan menghubungi Anda untuk pelaksanaan kelas",
+                                            "courseName": "Webinar: Mahir Desain Grafis Dengan Corel Draw",
+                                            "courseSerial": "PROG-K7P05U0Y",
+                                            "createdAt": "2020-06-03 06:59:45.616478 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/YP_Fitri_Al_Baasitu_Background.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "YP Fitri Al-Baasitu merupakan lembaga kursus komputer (IT) yang berdiri sejak November 2017 oleh orang – orang yang berpengalaman di bidang teknologi informasi. Dengan totalitas dan profesionalisme kerja, kami yakin mampu memberikan pelayanan yang optimal dan pengajaran yang berkualitas sehingga mampu membantu masyarakat dalam mengakses pendidikan yang lebih baik.",
+                                                    "jobTitle": "",
+                                                    "name": "YP FITRI AL BAASITU",
+                                                    "profilePicture": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Fitri_Al_Baasitu_Icon.png"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Wahana_Tama_small.jpg",
+                                            "introductionVideoURL": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/YP_Fitri_Al_Baasitu_Large.jpg",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "DKI JAKARTA",
+                                                "KOTA JAKARTA PUSAT"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-LCWSRGGW",
+                                            "price": 450000,
+                                            "rating": 0,
+                                            "slug": "webinar-mahir-desain-grafis-dengan-corel-draw",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "2020-07-23 07:37:21.403217 +0000 UTC"
+                                        }
+                                    ],
+                                    "examples": [
+                                        [
+                                            {
+                                                "basePrice": 300000,
+                                                "categories": [],
+                                                "courseDescription": "Proses check In dan check out sebuah hotel merupakan materi yang sangat penting sebagai seorang frontliner. Front office / Kantor depan adalah wajah hotel yang pertama kali memberikan kesan hangat bagi tamu-tamunya, begitu juga kesan terakhir yang mampu untuk tamu mendatangkan kembali tamu serta anak keluarganya. &lt;br&gt;&lt;br&gt; &lt;b&gt; PERHATIAN &lt;/b&gt; &lt;br&gt; 1. Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun &lt;br&gt; 2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan &lt;br&gt; 3. Program pelatihan yang dibeli menggunakan Kartu Prakerja tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat &lt;br&gt; 4. Khusus untuk pengguna Kartu Prakerja, pastikan nama, alamat email, dan nomor HP yang terdaftar di Skill Academy sesuai dengan data Prakerja Anda. &lt;br&gt;&lt;br&gt; &lt;b&gt;Cara Redeem Voucher:&lt;/b&gt; &lt;br&gt; 1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher kamu. &lt;br&gt; 2. Lalu setelah itu, daftarkan diri kamu dan masukkan kode voucher di form yang telah disediakan &lt;br&gt; 2. Tim MyEduSolve akan menghubungi kamu untuk pelaksanaan kelas.",
+                                                "courseName": "Webinar: Perhotelan: Cara menghandle prosedur check in dan check out",
+                                                "courseSerial": "PROG-C798TBXW",
+                                                "createdAt": "2020-07-17 06:21:18.919288 +0000 UTC",
+                                                "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/MyEduSolve_Image.jpg",
+                                                "instructors": [
+                                                    {
+                                                        "description": "MyEduSolve is an edu-tech company focused on transforming Indonesia workforce through digital literacy. We offer a range of products which includes internationally recognized certifications, course preparations and digital literacy training.",
+                                                        "jobTitle": "",
+                                                        "name": "MyEduSolve",
+                                                        "profilePicture": "https://skillacademy-prod-image.skillacademy.com/offline-marketplace/Icon+MyEduSolve.png"
+                                                    }
+                                                ],
+                                                "introductionVideoThumbnailURL": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Check_in_Hotel.jpg",
+                                                "introductionVideoURL": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Check_in_Hotel_Large.jpg",
+                                                "isSubscribed": false,
+                                                "location": [
+                                                    "DKI JAKARTA",
+                                                    "KOTA JAKARTA BARAT"
+                                                ],
+                                                "marketType": "OFFLINE",
+                                                "merchantSerial": "MERC-VLIIJTKR",
+                                                "price": 300000,
+                                                "rating": 0,
+                                                "slug": "webinar-perhotelan-cara-menghandle-prosedur-check-in-dan-check-out",
+                                                "tags": [],
+                                                "totalRating": 0,
+                                                "transactional": "TRANSACTIONABLE_YES",
+                                                "updatedAt": "2020-07-20 13:37:53.439155 +0000 UTC"
+                                            },
+                                            {
+                                                "basePrice": 250000,
+                                                "categories": [],
+                                                "courseDescription": "Jadwal: Sabtu, 1 Agustus 2020 &lt;br&gt; Pukul: 13.00 WIB -15.00 WIB &lt;br&gt; Platform: Zoom &lt;br&gt; Pemasaran adalah bidang yang pasti ada disetiap perusahaan.  Salah satu tugas pemasaran adalah membuat propopal produk untuk calon customer yaitu Perusahaan Pemerintah dan Swasta, ataupun perorangan.  Pelatihan ini adalah cara lain dalam membuat proposal dengan menggunakan Ms Power Point yang akan menjadi proposal maut, khususnya di era digital saat ini yang serba cepat, mudah, dan INDAH.  Pelatihan ini akan menjadi jawaban kebutuhan proposal kekinian.&lt;br&gt; &lt;br&gt; &lt;br&gt; PERHATIAN &lt;/b&gt; &lt;br&gt; 1. Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun, &lt;br&gt; 2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan, &lt;br&gt; 3. Program pelatihan yang dibeli menggunakan Kartu Prakerja tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelengara pelatihan berhak untuk tidak memberikan sertifikat, &lt;br&gt; 4. Khusus untuk kamu pengguna Kartu Prakerja, pastikan nama, alamat email, dan nomor HP yang kamu daftarkan di Skill Academy sesuai dengan data Prakerja kamu. &lt;br&gt; &lt;br&gt; &lt;b&gt; Cara Redeem Voucher &lt;/b&gt; 1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher Kamu, &lt;br&gt;  2. Setelah melakukan transaksi, daftarkan diri Anda dan masukkan kode voucher &lt;br&gt; 3. Tim ITECH akan menghubungi Anda untuk pelaksanaan kelas",
+                                                "courseName": "Webinar: Cara membuat Proposal Maut dengan Ms Power Point",
+                                                "courseSerial": "PROG-EQXWISFD",
+                                                "createdAt": "2020-05-20 13:19:15.6066 +0000 UTC",
+                                                "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/ITECH_Background.jpg",
+                                                "instructors": [
+                                                    {
+                                                        "description": "ITECH adalah Lembaga Pelatihan Komputer dan Bisnis Digital, fokus pada pembelajaran berbasis Digital sejak Tahun 2010 di Kota Metro - Lampung, menjadi Juara 1 Nasional tahun 2019 sebagai Lembaga Kursus terbaik.  ITECH sudah melaksanakan kelas ONLINE sejak tahun 2018 melalui platform www.kursusdaring.kemendikbud.go.id, dengan jurusan DIGITAL Marketing, Youtuber, Game Developer, Android Programming.",
+                                                        "jobTitle": "",
+                                                        "name": "Indonesian Technology (ITech)",
+                                                        "profilePicture": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/ITECH_icon.png"
+                                                    }
+                                                ],
+                                                "introductionVideoThumbnailURL": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/ITECH_small.jpg",
+                                                "introductionVideoURL": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/ITECH_Large.jpg",
+                                                "isSubscribed": false,
+                                                "location": [
+                                                    "DKI JAKARTA",
+                                                    "KOTA JAKARTA PUSAT"
+                                                ],
+                                                "marketType": "OFFLINE",
+                                                "merchantSerial": "MERC-WGL1QT6D",
+                                                "price": 250000,
+                                                "rating": 0,
+                                                "slug": "webinar-cara-membuat-proposal-maut-dengan-ms-power-point",
+                                                "tags": [],
+                                                "totalRating": 0,
+                                                "transactional": "TRANSACTIONABLE_YES",
+                                                "updatedAt": "2020-07-29 06:39:26.009254 +0000 UTC"
+                                            },
+                                            {
+                                                "basePrice": 450000,
+                                                "categories": [],
+                                                "courseDescription": "Jadwal: Kamis, 13 Agustus 2020 &lt;br&gt; Pukul: 09.00 - 11.00 WIB &lt;br&gt; Platform: Zoom &lt;br&gt; Pentingnya desain grafis dalam pekerjaan telah menarik minat dan perhatian masyarakat. Sudah banyak sekali orang yang memilih profesi designer sebagai salah satu pekerjaan yang cukup menjanjikan. Kemampuan dalam bidang desain khususnya corel draw memang memberikan keuntungan serta peluang yang besar. Disini peserta akan belajar membuat desain logo, sticker, banner, desain kemasan/packaging, desain denah lokasi, undangan pernikahan, kartu nama, pamflet serta desain kaos.&lt;br&gt; &lt;br&gt; &lt;b&gt; PERHATIAN &lt;/b&gt; &lt;br&gt; 1. Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun, &lt;br&gt; 2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan, &lt;br&gt; 3. Program pelatihan yang dibeli menggunakan Kartu Prakerja tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat, &lt;br&gt; 4. Khusus untuk kamu pengguna Kartu Prakerja, pastikan nama, alamat email, dan nomor HP yang kamu daftarkan di Skill Academy sesuai dengan data Prakerja kamu. &lt;br&gt; &lt;br&gt; &lt;b&gt; Cara Redeem Voucher &lt;/b&gt; &lt;br&gt; 1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher Kamu, &lt;br&gt; 2.Setelah melakukan transaksi, daftarkan diri Anda dan masukkan kode voucher &lt;br&gt; 3. Tim YP FITRI AL BAASITU akan menghubungi Anda untuk pelaksanaan kelas",
+                                                "courseName": "Webinar: Mahir Desain Grafis Dengan Corel Draw",
+                                                "courseSerial": "PROG-K7P05U0Y",
+                                                "createdAt": "2020-06-03 06:59:45.616478 +0000 UTC",
+                                                "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/YP_Fitri_Al_Baasitu_Background.jpg",
+                                                "instructors": [
+                                                    {
+                                                        "description": "YP Fitri Al-Baasitu merupakan lembaga kursus komputer (IT) yang berdiri sejak November 2017 oleh orang – orang yang berpengalaman di bidang teknologi informasi. Dengan totalitas dan profesionalisme kerja, kami yakin mampu memberikan pelayanan yang optimal dan pengajaran yang berkualitas sehingga mampu membantu masyarakat dalam mengakses pendidikan yang lebih baik.",
+                                                        "jobTitle": "",
+                                                        "name": "YP FITRI AL BAASITU",
+                                                        "profilePicture": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Fitri_Al_Baasitu_Icon.png"
+                                                    }
+                                                ],
+                                                "introductionVideoThumbnailURL": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Wahana_Tama_small.jpg",
+                                                "introductionVideoURL": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/YP_Fitri_Al_Baasitu_Large.jpg",
+                                                "isSubscribed": false,
+                                                "location": [
+                                                    "DKI JAKARTA",
+                                                    "KOTA JAKARTA PUSAT"
+                                                ],
+                                                "marketType": "OFFLINE",
+                                                "merchantSerial": "MERC-LCWSRGGW",
+                                                "price": 450000,
+                                                "rating": 0,
+                                                "slug": "webinar-mahir-desain-grafis-dengan-corel-draw",
+                                                "tags": [],
+                                                "totalRating": 0,
+                                                "transactional": "TRANSACTIONABLE_YES",
+                                                "updatedAt": "2020-07-23 07:37:21.403217 +0000 UTC"
+                                            }
+                                        ]
+                                    ]
+                                },
+                                "page": {
+                                    "type": "integer",
+                                    "default": 2,
+                                    "enum": [
+                                        2
+                                    ]
+                                },
+                                "pageSize": {
+                                    "type": "integer",
+                                    "default": 3,
+                                    "enum": [
+                                        3
+                                    ]
+                                },
+                                "recommendationID": {
+                                    "type": "string",
+                                    "default": ""
+                                },
+                                "searchAlgoID": {
+                                    "type": "string",
+                                    "default": ""
+                                },
+                                "totalCourse": {
+                                    "type": "integer",
+                                    "default": 519
+                                },
+                                "totalPage": {
+                                    "type": "integer",
+                                    "default": 173
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "page",
+                                "pageSize",
+                                "recommendationID",
+                                "searchAlgoID",
+                                "totalCourse",
+                                "totalPage"
+                            ]
+                        },
+                        "status": {
+                            "type": "string",
+                            "default": "success",
+                            "enum": [
+                                "success"
+                            ]
+                        },
+                        "message": {
+                            "type": "string",
+                            "default": "success",
+                            "enum": [
+                                "success"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "data",
+                        "message",
+                        "status"
+                    ]
+                }
+            }
+        }
+    }
+}</msg>
+<status status="PASS" starttime="20211126 01:07:07.199" endtime="20211126 01:07:07.340"/>
 </kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${PrakerjaLink}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:14.585" endtime="20211126 00:07:14.624"/>
+<status status="PASS" starttime="20211126 01:07:05.935" endtime="20211126 01:07:07.340"/>
+</test>
+<test id="s1-t2" name="Verify GET courses with with searchQuery">
+<kw name="GET" library="REST">
+<var>&amp;{response}</var>
+<arg>/skillacademy/discovery/search?searchQuery=${ValidCourseName}</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<msg timestamp="20211126 01:07:09.194" level="INFO">&amp;{response} = { seconds=0.5333680000000001 | status=200 | reason=OK | body={'data': {'data': [{'basePrice': 1000000, 'categories': [], 'courseDescription': 'Jadwal Pelatihan: Setiap Kamis &amp; Jumat (Minggu ke 2 &amp; 4) ...</msg>
+<status status="PASS" starttime="20211126 01:07:07.344" endtime="20211126 01:07:09.194"/>
 </kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${KategoriDropdown}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:14.624" endtime="20211126 00:07:14.668"/>
+<kw name="String" library="REST">
+<arg>response body status</arg>
+<arg>success</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<status status="PASS" starttime="20211126 01:07:09.194" endtime="20211126 01:07:09.200"/>
 </kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${SearchInput}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:14.668" endtime="20211126 00:07:14.715"/>
+<kw name="String" library="REST">
+<arg>response body message</arg>
+<arg>success</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<status status="PASS" starttime="20211126 01:07:09.200" endtime="20211126 01:07:09.204"/>
 </kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${SearchButton}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:14.715" endtime="20211126 00:07:14.759"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${ReferralLink}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:14.759" endtime="20211126 00:07:14.802"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${LoginButton}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:14.802" endtime="20211126 00:07:14.853"/>
-</kw>
-<timeout value="5 seconds"/>
-<status status="PASS" starttime="20211126 00:07:14.481" endtime="20211126 00:07:14.853"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>${SearchInput}</arg>
-<arg>${keywords}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20211126 00:07:14.854" level="INFO">Typing text 'membuat' into text field '//input[@data-testid='search-input-field']'.</msg>
-<status status="PASS" starttime="20211126 00:07:14.854" endtime="20211126 00:07:15.041"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>${SearchButton}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20211126 00:07:15.041" level="INFO">Clicking element '//div[@data-testid='search-icon']'.</msg>
-<status status="PASS" starttime="20211126 00:07:15.041" endtime="20211126 00:07:15.221"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:14.478" endtime="20211126 00:07:15.221"/>
-</kw>
-<kw name="Verify Non-Empty Search Result" library="SearchPage">
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${FilterHarga}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:15.226" endtime="20211126 00:07:16.644"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${FilterDurasi}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:16.644" endtime="20211126 00:07:16.686"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${PaginationPerPage}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:16.686" endtime="20211126 00:07:16.802"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${CourseCards}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:16.802" endtime="20211126 00:07:16.852"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${PaginationPrev}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:16.852" endtime="20211126 00:07:16.898"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${PaginationNext}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20211126 00:07:16.898" endtime="20211126 00:07:16.942"/>
-</kw>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${ActualTotalResult}</var>
-<arg>${TotalResult}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20211126 00:07:16.990" level="INFO">${ActualTotalResult} = 194</msg>
-<status status="PASS" starttime="20211126 00:07:16.942" endtime="20211126 00:07:16.990"/>
-</kw>
-<kw name="Convert To Integer" library="BuiltIn">
-<var>${ActualTotalResult}</var>
-<arg>${ActualTotalResult}</arg>
-<doc>Converts the given item to an integer number.</doc>
-<msg timestamp="20211126 00:07:16.990" level="INFO">${ActualTotalResult} = 194</msg>
-<status status="PASS" starttime="20211126 00:07:16.990" endtime="20211126 00:07:16.990"/>
-</kw>
-<kw name="Should Be True" library="BuiltIn">
-<arg>${ActualTotalResult}&gt;0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" starttime="20211126 00:07:16.994" endtime="20211126 00:07:16.995"/>
-</kw>
-<kw name="Element Text Should Be" library="SeleniumLibrary">
-<arg>${CurrentKeyword}</arg>
-<arg>${ValidCourseName}</arg>
-<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
-<msg timestamp="20211126 00:07:16.995" level="INFO">Verifying element '//span[@data-testid='current-keyword']' contains exact text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:16.995" endtime="20211126 00:07:17.035"/>
-</kw>
-<kw name="Get WebElements" library="SeleniumLibrary">
-<var>${titles}</var>
-<arg>${CourseTitles}</arg>
-<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
-<msg timestamp="20211126 00:07:17.056" level="INFO">${titles} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="fd52e6cf-5759-41cc-a33e-479a9abb4b99")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (sessi...</msg>
-<status status="PASS" starttime="20211126 00:07:17.035" endtime="20211126 00:07:17.056"/>
+<kw name="Set Variable" library="BuiltIn">
+<var>${courses}</var>
+<arg>${response.body.data.data}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20211126 01:07:09.208" level="INFO">${courses} = [{'basePrice': 1000000, 'categories': [], 'courseDescription': 'Jadwal Pelatihan: Setiap Kamis &amp; Jumat (Minggu ke 2 &amp; 4) &lt;br&gt; Durasi: 2 Hari, Total 16 Jam &lt;br&gt; &lt;br&gt; Di dalam kelas ini kamu akan mempel...</msg>
+<status status="PASS" starttime="20211126 01:07:09.204" endtime="20211126 01:07:09.208"/>
 </kw>
 <for flavor="IN">
-<var>${title}</var>
-<value>@{titles}</value>
+<var>${course}</var>
+<value>@{courses}</value>
 <iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="fd52e6cf-5759-41cc-a33e-479a9abb4b99")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
+<var name="${course}">{'basePrice': 1000000, 'categories': [], 'courseDescription': 'Jadwal Pelatihan: Setiap Kamis &amp; Jumat (Minggu ke 2 &amp; 4) &lt;br&gt; Durasi: 2 Hari, Total 16 Jam &lt;br&gt; &lt;br&gt; Di dalam kelas ini kamu akan mempela...</var>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${course.courseName}</arg>
 <arg>${ValidCourseName}</arg>
 <arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.084" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="fd52e6cf-5759-41cc-a33e-479a9abb4b99")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.060" endtime="20211126 00:07:17.084"/>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20211126 01:07:09.208" endtime="20211126 01:07:09.212"/>
 </kw>
-<status status="PASS" starttime="20211126 00:07:17.060" endtime="20211126 00:07:17.084"/>
+<status status="PASS" starttime="20211126 01:07:09.208" endtime="20211126 01:07:09.212"/>
 </iter>
 <iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="80c0a3a2-133a-4f71-acb0-42587f75cadd")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
+<var name="${course}">{'basePrice': 200000, 'categories': [], 'courseDescription': 'Jadwal kelas:Jadwal :&lt;br&gt;&lt;br&gt;&lt;b&gt;Senin, 16 Nov 2020, pukul 19.00 - 22.00&lt;br&gt;&lt;br&gt;&lt;b&gt;Rabu, 18 Nov 2020, pukul 19.00 -22.00&lt;br&gt;&lt;br&gt;&lt;b&gt;Senin, 2...</var>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${course.courseName}</arg>
 <arg>${ValidCourseName}</arg>
 <arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.098" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="80c0a3a2-133a-4f71-acb0-42587f75cadd")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.084" endtime="20211126 00:07:17.098"/>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<msg timestamp="20211126 01:07:09.212" level="FAIL">'Webinar : Basic Program' does not contain 'perkenalan dasar program abap'</msg>
+<status status="FAIL" starttime="20211126 01:07:09.212" endtime="20211126 01:07:09.212"/>
 </kw>
-<status status="PASS" starttime="20211126 00:07:17.084" endtime="20211126 00:07:17.098"/>
+<status status="FAIL" starttime="20211126 01:07:09.212" endtime="20211126 01:07:09.212"/>
 </iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="7a5a09df-ca38-4ea9-ac46-d68aae554323")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.119" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="7a5a09df-ca38-4ea9-ac46-d68aae554323")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.098" endtime="20211126 00:07:17.119"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.098" endtime="20211126 00:07:17.119"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="71670ac0-9df1-4a21-9444-10742bd88506")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.139" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="71670ac0-9df1-4a21-9444-10742bd88506")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.119" endtime="20211126 00:07:17.139"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.119" endtime="20211126 00:07:17.139"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="51554aa5-3e3d-4ddc-b5e6-2bfa33d2a1eb")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.163" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="51554aa5-3e3d-4ddc-b5e6-2bfa33d2a1eb")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.139" endtime="20211126 00:07:17.163"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.139" endtime="20211126 00:07:17.163"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="e4b91e86-913f-42a0-95d0-7fda56a71db4")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.188" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="e4b91e86-913f-42a0-95d0-7fda56a71db4")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.163" endtime="20211126 00:07:17.188"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.163" endtime="20211126 00:07:17.188"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="269adba9-6253-44dc-9394-908be8af03fa")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.210" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="269adba9-6253-44dc-9394-908be8af03fa")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.189" endtime="20211126 00:07:17.210"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.189" endtime="20211126 00:07:17.210"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="681d1bca-eb4a-4fb7-bd6b-efebd0d680b6")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.235" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="681d1bca-eb4a-4fb7-bd6b-efebd0d680b6")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.214" endtime="20211126 00:07:17.235"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.210" endtime="20211126 00:07:17.235"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="b7871cc4-6b8c-48f5-b0e7-baa814778538")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.257" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="b7871cc4-6b8c-48f5-b0e7-baa814778538")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.235" endtime="20211126 00:07:17.257"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.235" endtime="20211126 00:07:17.257"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="3253e198-854a-40ee-8fb2-f0faba5ee48b")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.282" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="3253e198-854a-40ee-8fb2-f0faba5ee48b")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.257" endtime="20211126 00:07:17.286"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.257" endtime="20211126 00:07:17.286"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="e3a28181-cef1-49e1-a6d0-e976a5c705f5")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.310" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="e3a28181-cef1-49e1-a6d0-e976a5c705f5")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.286" endtime="20211126 00:07:17.310"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.286" endtime="20211126 00:07:17.310"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="d5c0e4aa-cfcb-43eb-83e7-dad1298566fb")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.335" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="d5c0e4aa-cfcb-43eb-83e7-dad1298566fb")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.310" endtime="20211126 00:07:17.335"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.310" endtime="20211126 00:07:17.335"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="4b6eb0c9-c7fd-4f0b-8a6a-532d16267ae3")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.365" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="4b6eb0c9-c7fd-4f0b-8a6a-532d16267ae3")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.335" endtime="20211126 00:07:17.365"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.335" endtime="20211126 00:07:17.365"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="d10dfc64-f4d6-4f0b-b65b-4595eebbb709")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.392" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="d10dfc64-f4d6-4f0b-b65b-4595eebbb709")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.367" endtime="20211126 00:07:17.392"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.365" endtime="20211126 00:07:17.392"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="a39dbcd1-ecee-46e0-b65b-a960733a6dc0")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.416" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="a39dbcd1-ecee-46e0-b65b-a960733a6dc0")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.392" endtime="20211126 00:07:17.416"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.392" endtime="20211126 00:07:17.416"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="e28a7fc6-f9d1-4fa2-b55f-02f710960e78")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.445" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="e28a7fc6-f9d1-4fa2-b55f-02f710960e78")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.416" endtime="20211126 00:07:17.445"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.416" endtime="20211126 00:07:17.445"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="d88ad606-77bf-4790-a348-fed69f59ccdd")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.475" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="d88ad606-77bf-4790-a348-fed69f59ccdd")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.445" endtime="20211126 00:07:17.475"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.445" endtime="20211126 00:07:17.475"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="da8626ed-836d-410d-93c8-3af55275c054")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.497" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="da8626ed-836d-410d-93c8-3af55275c054")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.475" endtime="20211126 00:07:17.497"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.475" endtime="20211126 00:07:17.497"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="2e7c2776-4bc6-47c5-b742-31dd81d59617")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.525" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="2e7c2776-4bc6-47c5-b742-31dd81d59617")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.501" endtime="20211126 00:07:17.525"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.501" endtime="20211126 00:07:17.525"/>
-</iter>
-<iter>
-<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="1fb6b6a2-fe5c-4ff3-9e10-36d4b669146d")&gt;</var>
-<kw name="Element Should Contain" library="SeleniumLibrary">
-<arg>${title}</arg>
-<arg>${ValidCourseName}</arg>
-<arg>ignore_case=True</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<msg timestamp="20211126 00:07:17.547" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="1fb6b6a2-fe5c-4ff3-9e10-36d4b669146d")&gt;' contains text 'membuat'.</msg>
-<status status="PASS" starttime="20211126 00:07:17.525" endtime="20211126 00:07:17.551"/>
-</kw>
-<status status="PASS" starttime="20211126 00:07:17.525" endtime="20211126 00:07:17.551"/>
-</iter>
-<status status="PASS" starttime="20211126 00:07:17.056" endtime="20211126 00:07:17.551"/>
+<status status="FAIL" starttime="20211126 01:07:09.208" endtime="20211126 01:07:09.216"/>
 </for>
-<status status="PASS" starttime="20211126 00:07:15.221" endtime="20211126 00:07:17.551"/>
+<kw name="Output Schema" library="REST" type="TEARDOWN">
+<tag>I/O</tag>
+<doc>*Outputs JSON Schema to terminal or a file.*</doc>
+<msg timestamp="20211126 01:07:09.221" level="INFO">
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "GET https://skillacademy.com/skillacademy/discovery/search",
+    "description": "TestSearchAPI: Verify GET courses with with searchQuery",
+    "default": true,
+    "examples": [],
+    "type": "object",
+    "properties": {
+        "request": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "null"
+                },
+                "query": {
+                    "type": "object",
+                    "properties": {
+                        "searchQuery": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "searchQuery"
+                    ]
+                }
+            }
+        },
+        "response": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "basePrice": {
+                                                "type": "integer"
+                                            },
+                                            "categories": {
+                                                "type": "array"
+                                            },
+                                            "courseDescription": {
+                                                "type": "string"
+                                            },
+                                            "courseName": {
+                                                "type": "string"
+                                            },
+                                            "courseSerial": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type": "string"
+                                            },
+                                            "imageUrl": {
+                                                "type": "string"
+                                            },
+                                            "instructors": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "description": {
+                                                            "type": "string"
+                                                        },
+                                                        "jobTitle": {
+                                                            "type": "string"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "profilePicture": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "description",
+                                                        "jobTitle",
+                                                        "name",
+                                                        "profilePicture"
+                                                    ]
+                                                }
+                                            },
+                                            "introductionVideoThumbnailURL": {
+                                                "type": "string"
+                                            },
+                                            "introductionVideoURL": {
+                                                "type": "string"
+                                            },
+                                            "isSubscribed": {
+                                                "type": "boolean"
+                                            },
+                                            "location": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "marketType": {
+                                                "type": "string"
+                                            },
+                                            "merchantSerial": {
+                                                "type": "string"
+                                            },
+                                            "price": {
+                                                "type": "integer"
+                                            },
+                                            "rating": {
+                                                "type": "integer"
+                                            },
+                                            "slug": {
+                                                "type": "string"
+                                            },
+                                            "tags": {
+                                                "type": "array"
+                                            },
+                                            "totalRating": {
+                                                "type": "integer"
+                                            },
+                                            "transactional": {
+                                                "type": "string"
+                                            },
+                                            "updatedAt": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "basePrice",
+                                            "categories",
+                                            "courseDescription",
+                                            "courseName",
+                                            "courseSerial",
+                                            "createdAt",
+                                            "imageUrl",
+                                            "instructors",
+                                            "introductionVideoThumbnailURL",
+                                            "introductionVideoURL",
+                                            "isSubscribed",
+                                            "location",
+                                            "marketType",
+                                            "merchantSerial",
+                                            "price",
+                                            "rating",
+                                            "slug",
+                                            "tags",
+                                            "totalRating",
+                                            "transactional",
+                                            "updatedAt"
+                                        ]
+                                    },
+                                    "default": [
+                                        {
+                                            "basePrice": 1000000,
+                                            "categories": [],
+                                            "courseDescription": "Jadwal Pelatihan: Setiap Kamis &amp; Jumat (Minggu ke 2 &amp; 4) &lt;br&gt; Durasi: 2 Hari, Total 16 Jam &lt;br&gt; &lt;br&gt; Di dalam kelas ini kamu akan mempelajari: &lt;br&gt;&lt;b&gt;  Topic 1 : Alur Proses Program ABAP/b&gt;&lt;br&gt; • Arsitektur Sistem dan Penggunaan Program ABAP dengan contoh pada Pemilihan Menu Layar dan List &lt;br&gt;&lt;b&gt; Topic 2 : Pengenalan tentang ABAP Workbench&lt;/b&gt;&lt;br&gt; • Navigasi Objek dan Penyimpanan &lt;br&gt; • Pengembangan Program dan Pengelolaan  &lt;br&gt;&lt;b&gt; Topic 3 : Pengenalan tentang Kamus ABAP&lt;/b&gt;&lt;br&gt; • Data Model dan Element Diskriptif di Kamus ABAP  &lt;br&gt;&lt;b&gt; Topic 4 : Element Dasar di Bahasa Programan ABAP&lt;/b&gt;&lt;br&gt; • Bekerja dengan Dasar Data Objek &lt;br&gt; • Bekerja dengan Struktur &lt;br&gt; • Bekerja dengan Internal Tabels &lt;br&gt;&lt;br&gt;Yuk bergabung di kelas ini! Catat ya.... program ini didukung oleh Edugate yang telah bekerjasama dengan perusahaan penyedia ERP software terbaik di dunia, PT SAP Indonesia, sejak tahun 2003 . Jadi, jangan lewatkan!&lt;br&gt;&lt;br&gt;&lt;b&gt;PERHATIAN&lt;/b&gt;&lt;br&gt;1.Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun&lt;br&gt;2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan&lt;br&gt;3. Program pelatihan yang dibeli tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat&lt;br&gt;&lt;br&gt;&lt;b&gt;Cara Redeem Voucher:&lt;/b&gt;&lt;br&gt;1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher Kamu, &lt;br&gt; 2. Isi data diri kamu pada form berikut: https://bit.ly/KelasEdugate &lt;br&gt; 3.Tim Edufate akan menghubungi Anda dalam waktu 2x24 jam untuk pelaksanaan kelas &lt;br&gt; 4. Sertifikat dapat kamu lihat setelah selesai melaksanakan pelatihan bersama Tim Edugate &lt;br&gt; 5. Kamu wajib mengisi ulasan serta rating apabila kamu sudah menyelesaikan kelas ini.",
+                                            "courseName": "Webinar: Perkenalan Dasar Program ABAP",
+                                            "courseSerial": "PROG-ICMUEVDI",
+                                            "createdAt": "0001-01-01 00:00:00 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/1._ABAP_-_BAckground_image.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "Edugate dibawah naungan PT. Harfan Tri Megah merupakan lembaga pendidikan yang berfokus pada Pendidikan SAP ERP. Dalam mendukung gerakan Indonesia di Industri 4.0, kami berfokus untuk mendukung kurangnya pengetahuan ERP dengan menyediakan pendidikan terkait SAP sehingga lebih banyak lagi yang dapat merasakan kekuatan nyata dari aplikasi kelas dunia ini. Kami telah menjalin hubungan kerjasama dengan perusahaan penyedia ERP software terbaik di dunia, PT SAP Indonesia, sejak tahun 2003. Melalui kerjasama ini, kami menyediakan program unggulan yang diperuntukan untuk jenjang Institusi Pendidikan atau sejajarnya. Dan sudah memiliki keterlibatan jangka panjang dengan lebih dari 20 universitas besar di seluruh Indonesia dalam menyediakan kurikulum terkait SAP untuk para siswa.",
+                                                    "jobTitle": "Pendidikan SAP ERP",
+                                                    "name": "Edugate",
+                                                    "profilePicture": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Edugate_Logo.png"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "",
+                                            "introductionVideoURL": "",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "KOTA JAKARTA SELATAN"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-3NQBNWNC",
+                                            "price": 1000000,
+                                            "rating": 0,
+                                            "slug": "webinar-perkenalan-dasar-program-abap",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "0001-01-01 00:00:00 +0000 UTC"
+                                        },
+                                        {
+                                            "basePrice": 200000,
+                                            "categories": [],
+                                            "courseDescription": "Jadwal kelas:Jadwal :&lt;br&gt;&lt;br&gt;&lt;b&gt;Senin, 16 Nov 2020, pukul 19.00 - 22.00&lt;br&gt;&lt;br&gt;&lt;b&gt;Rabu, 18 Nov 2020, pukul 19.00 -22.00&lt;br&gt;&lt;br&gt;&lt;b&gt;Senin, 23 Nov 2020, pukul 19.00 - 22.00&lt;br&gt;&lt;br&gt;&lt;b&gt;Rabu, 25 Nov 2020,pukul 19.00 - 22.00&lt;br&gt;&lt;b&gt;Platform: Zoom&lt;br&gt;Kelas ini merupakan kelas pendahuluan bagi siapa saja yang ingin mengetahui dengan pasti, apakah mereka tepat masuk&lt;br&gt;dalam dunia coding atau menjadi seorang programmer. Silabus yang disusun merupakan upaya penggalian potensi bagi siapapun yang tertarik menjadi programmer.&lt;br&gt;GOALS :&lt;br&gt;Setelah mendapatkan pembelajaran pada akhirnya peserta diharapkan akan mampu:&lt;br&gt;- Memahami dan mengoperasikanVisual Studio Code serta komponen-komponen di dalamnya &lt;br&gt;- Menerapkan dasar fundamental Bahasa pemrograman web front-end, termasuk HTML, CSS, dan JavaScript dan menganalisa algoritma untuk menyelesaikan masalah&lt;br&gt;- Memutuskan apakah pekerjaan sebagai seorang programmer menjadi profesi yang tepat untuk didalami.&lt;br&gt;Course detail:&lt;br&gt;Kelas remote dengan Zoom&lt;br&gt;Durasi 2 Minggu&lt;br&gt;4 kali pertemuan (2 kali / minggu)&lt;br&gt;&lt;br&gt;&lt;b&gt;PERHATIAN &lt;/b&gt; &lt;br&gt; 1. Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun &lt;br&gt; 2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan &lt;br&gt; 3. Program pelatihan yang dibeli menggunakan Kartu Prakerja tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat &lt;br&gt; 4. Khusus untuk pengguna Kartu Prakerja, pastikan nama, alamat email, dan nomor HP yang terdaftar di Skill Academy sesuai dengan data Prakerja Anda. &lt;br&gt;&lt;br&gt; &lt;b&gt;Cara Redeem Voucher:&lt;/b&gt; &lt;br&gt; 1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher kamu. &lt;br&gt; 2. Lalu setelah itu, daftarkan diri kamu dan masukkan kode voucher di https://bit.ly/voucherg2 &lt;br&gt; 2. Tim G2Academy akan menghubungi kamu untuk pelaksanaan kelas.",
+                                            "courseName": "Webinar : Basic Program",
+                                            "courseSerial": "PROG-6JFTAA2G",
+                                            "createdAt": "0001-01-01 00:00:00 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/01_Background.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "Investasikan masa depan Anda dan berlarilah bersama industri teknologi yang kian melejit. PT Generasi Teknologi Buana (G2 Academy) , didirikan tahun 2018 awalnya yang fokus mengembangkan berbagai program pelatihan guna mewujudkan sumber daya manusia yang unggul. Memiliki pengalaman penyelenggaraan kelas dan training, baik di lingkungan sekolah/kampus, perusahaan swasta/BUMN dan lembaga pemerintahan. Selain itu memiliki pengalaman dalam pengembangan sejumlah proyek berbasis teknologi, yang melibatkan praktisi dan developer senior dalam bidang programming, big data hingga ai.",
+                                                    "jobTitle": "Program Pelatihan Teknologi",
+                                                    "name": "G2 Academy",
+                                                    "profilePicture": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/G2_Icon.png"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "",
+                                            "introductionVideoURL": "",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "KOTA JAKARTA BARAT"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-6626ECVK",
+                                            "price": 200000,
+                                            "rating": 0,
+                                            "slug": "webinar-basic-program",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "0001-01-01 00:00:00 +0000 UTC"
+                                        },
+                                        {
+                                            "basePrice": 950000,
+                                            "categories": [],
+                                            "courseDescription": "Didalam kelas ini pembelajaran akan disampaikan dalam bentuk video pembelajaran. Melalui platform Learning Management system Hatten Education Center akses selama 1 tahun &lt;br&gt;&lt;br&gt;Pada kelas ini anda akan mempelajari pengetahuan dasar mengenai wine secara menyeluruh mulai dari apa itu wine, cara pembuatan, apa yang membuat wine berbeda, bagaimana tehnik mencicipi wine, melakukan wine dan food pairing sampai pada tehnik penyajian dari wines. Kelas ini dilengkapi dengan video penjelasan, module, dilengkapi dengan vitur diskusi dan tanya jawab dengan educator, dan sertificate.&lt;br&gt;&lt;br&gt;Anda akan mendapatkan pengetahuan dasar mengenai wine secara menyeluruh mulai dari:&lt;br&gt;1.Apa itu wine&lt;br&gt;2.Pengertian mengenai buah anggur dan pengaruhnya terhadap wines&lt;br&gt;3.Apa saja Type dan style dari wine&lt;br&gt;4.Bagaimanakah caranya wine dibuat&lt;br&gt;5.Bagaimana cara membaca wine label&lt;br&gt;6.Bagaimana cara menyimpan wine&lt;br&gt;7.Bagaimana cara mencicipi wine dan memastikan wine dalam keadaan baik&lt;br&gt;8.Bagaimana cara melakukan wine dan food pairing&lt;br&gt;9.Alat apa saja yang dibutuhkan untuk menyajikan wines&lt;br&gt;10.Langkah langkah penyajian wines&lt;br&gt;&lt;br&gt;Kamu akan dibimbing langsung oleh &lt;b&gt;Kertawidyawati&lt;/b&gt; dengan pengalamannya sebagai:&lt;br&gt;1. Certified  Educator WSET Wine &amp; Spirit Education Trust, UK, educator WSET pertama di Indonesia&lt;br&gt;2.Certified WSET Level 1 Award in Wines&lt;br&gt;3.Certified WSET Level 2 Award in Wines &amp; Spirits&lt;br&gt;4.Certified WSET Level 3 Award in Wines&lt;br&gt;5.Barossa Enthusiast Level 1&lt;br&gt;6.Certified Hospitality Trainer &amp; Educator  - CHT., CHE dari American Hotel &amp; Lodging Educational Institute  AHLEI&lt;br&gt;7.Advisor of  Indonesia Sommelier Association Bali Chapter&lt;br&gt;8.Secretary of Asian Wine Producers Association – AWPA&lt;br&gt;9.Wine International Judge from OIV International Organisation Vine and Wine.&lt;br&gt;&lt;br&gt;Passing grade untuk kelulusan dalam kelas ini adalah 70% melalui exam dimana Sertifikat kelulusan/PASS akan dberikan apabila point yang diraih adalah 70% sedangkan sertifikat kehadiran/Attendance akan diberikan apabila point yang diraih lebih rendah dari 70%&lt;br&gt;&lt;br&gt;Yuk bergabung di kelas ini! Catat ya…. program ini didukung oleh Hatten Education Center yang sudah berpengalaman. Jadi, jangan lewatkan!&lt;br&gt;&lt;br&gt;&lt;b&gt;PERHATIAN&lt;/b&gt;&lt;br&gt;1.Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun&lt;br&gt;2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan&lt;br&gt;3. Program pelatihan yang dibeli tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat&lt;br&gt;&lt;br&gt;&lt;b&gt;Cara Redeem Voucher:&lt;/b&gt;&lt;br&gt;1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher Kamu, &lt;br&gt; 2. Isi data diri kamu pada form berikut: https://bit.ly/KelasHEC &lt;br&gt; 3.Tim Hatten Education Center akan menghubungi Anda dalam waktu 2x24 jam untuk pelaksanaan kelas &lt;br&gt; 4. Sertifikat dapat kamu lihat setelah selesai melaksanakan pelatihan bersama Tim Hatten Education Center  &lt;br&gt; 5. Kamu wajib mengisi ulasan serta rating apabila kamu sudah menyelesaikan kelas ini.",
+                                            "courseName": "Basic Wine Full Program",
+                                            "courseSerial": "PROG-VWZ4VAHV",
+                                            "createdAt": "0001-01-01 00:00:00 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Background_HEC_FullProgram.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "Hatten Education Center adalah lembaga pelatihan kerja yang berfocus pada pengetahuan mengenai wine dan spirit, menjadi lembaga pertama di Indonesia yang berhak melaksanakan pelatihan bersertifiikasi international untuk program pengetahuan wine dan spirit melalui program WSET – Wine &amp; Spirit Education Thrust dari UK ",
+                                                    "jobTitle": "Basic Wine Program",
+                                                    "name": "Hatten Education Center",
+                                                    "profilePicture": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Logo_HattenEducation.png"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "",
+                                            "introductionVideoURL": "",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "KOTA DENPASAR"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-4ODRG3UE",
+                                            "price": 950000,
+                                            "rating": 0,
+                                            "slug": "basic-wine-full-program",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "0001-01-01 00:00:00 +0000 UTC"
+                                        },
+                                        {
+                                            "basePrice": 350000,
+                                            "categories": [],
+                                            "courseDescription": "Materi ini dalam bentuk video pelatihan,akan dikupas secara dasar tentang sebuah Hotel pada umumnya, sehingga peserta mengerti dan mempunyai gambaran seperti apa operasional di dalam hotel itu berjalan .  &lt;br&gt;&lt;br&gt;&lt;b&gt;PERHATIAN&lt;/b&gt;&lt;br&gt;1.Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun&lt;br&gt;2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan&lt;br&gt;3. Program pelatihan yang dibeli tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat. &lt;br&gt;&lt;br&gt; &lt;b&gt;Cara Redeem Voucher:&lt;/b&gt; &lt;br&gt; 1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher kamu. &lt;br&gt; 2. Lalu setelah itu, daftarkan diri kamu dan masukkan kode voucher di link http://bit.ly/KelasEduSolve  &lt;br&gt; 3. Tim MyEduSolve akan menghubungi kamu untuk pelaksanaan kelas.",
+                                            "courseName": "Video Pelatihan: Dasar-dasar Pengetahuan di Dunia Perhotelan dan Pariwisata",
+                                            "courseSerial": "PROG-US6YJMY8",
+                                            "createdAt": "0001-01-01 00:00:00 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/MyEduSolve_Image.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "MyEduSolve is an edu-tech company focused on transforming Indonesia workforce through digital literacy. We offer a range of products which includes internationally recognized certifications, course preparations and digital literacy training.",
+                                                    "jobTitle": "Design Grafis, Dasar UMKM, Public Speaking",
+                                                    "name": "MyEduSolve",
+                                                    "profilePicture": "https://skillacademy-prod-image.skillacademy.com/offline-marketplace/Icon+MyEduSolve.png"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "",
+                                            "introductionVideoURL": "",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "KOTA JAKARTA BARAT"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-VLIIJTKR",
+                                            "price": 350000,
+                                            "rating": 0,
+                                            "slug": "video-pelatihan-dasardasar-pengetahuan-di-dunia-perhotelan-dan-pariwisata",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "0001-01-01 00:00:00 +0000 UTC"
+                                        },
+                                        {
+                                            "basePrice": 200000,
+                                            "categories": [],
+                                            "courseDescription": "Hii learners, mau belajar berkarir sebagai android developer dan bekerja di perusahaan startup ternama?&lt;br&gt;Pusing belajar sendiri karena tutorial di internet yang tidak terstruktur? &lt;br&gt;&lt;br&gt;Android merupakan mobile operating system terbesar di dunia selain IOS. Sekitar 92% dari total 174.5 juta pengguna internet di Indonesia, menggunakan Android Smartphone. Selain itu setiap perusahaan berlomba untuk membuat aplikasi android untuk memudahkan mereka dalam berbisnis dan menjangkau lebih banyak pengguna. &lt;br&gt;Dengan menguasai Teknik pembuatan aplikasi android, anda akan meningkatkan peluang untuk masuk ke perusahaan besar dan membangun karir sebagai android developer.&lt;br&gt;&lt;br&gt; Setelah mengikuti pelatihan ini anda akan : &lt;br&gt; 1. Memahami infrastruktur aplikasi mobile&lt;br&gt; 2. Memahami dasar-dasar android studio&lt;br&gt; 3. membuat aplikasi android sederhana&lt;br&gt;&lt;br&gt; Cocok bagi siapapun yang tertarik untuk :&lt;br&gt; 1. Berniat untuk berkarir sebagai android developer di perusahaan / pekerja lepas&lt;br&gt; 2. Tidak punya basic IT dan Mau belajar dari dasar&lt;br&gt;&lt;b&gt;BELAJAR DARI DASAR. 1x BAYAR DIJAMIN BELAJAR SAMPAI BISA.&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Materi Pelatihan&lt;/b&gt;&lt;br&gt; 1. Cara Instalasi Android Studio &lt;br&gt; 2. Memilih Template Proyek&lt;br&gt; 3. Pengaturan Proyek Aplikasi Android&lt;br&gt; 4. Mengenal dan mendesain layout di Android&lt;br&gt; 5. Memprogram dan menempatkan elemen text pada aplikasi Android&lt;br&gt; 6. Konsep Gravity dalam aplikasi android&lt;br&gt; 7. Menambahkan elemen&lt;br&gt; 8. Melihat hasil rancangan pada emulator / smartphone &lt;br&gt; 9. Pemrograman dasar di Android Studio&lt;br&gt; 10. Even-Driven di Android Studio&lt;br&gt; 11. Instruksi antara layout dan kode&lt;br&gt; 12. Membuat validasi dengan Bahasa pemrograman java &lt;br&gt;&lt;br&gt; Yuk bergabung di kelas ini! Catat ya…. program ini didukung oleh Course-Net yang merupakan #1 Practical IT Coaching yang memenangkan penghargaan internasional dalam 2 tahun berturut-turut (ECC Global Award Atlanta USA 2019 &amp; The Most Impactful IT Coaching 2020). Jadi, jangan lewatkan!&lt;br&gt;&lt;br&gt;&lt;b&gt;PERHATIAN&lt;/b&gt;&lt;br&gt;1.Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun&lt;br&gt;2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan&lt;br&gt;3. Program pelatihan yang dibeli tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat&lt;br&gt;&lt;br&gt;&lt;b&gt;Cara Redeem Voucher:&lt;/b&gt;&lt;br&gt;1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher Kamu, &lt;br&gt; 2. Isi data diri kamu pada form berikut: http://bit.ly/KelasCourseNet &lt;br&gt; 3.Lakukan redeem voucher menggunakan kode voucher yang tadi muncul ke COURSE NET INDONESIA dengan masukan data diri lengkap di https://newvideo.course-net.com/web/index.php?r=redeem&lt;br&gt; 4. Setelah berhasil redeem voucher, langkah selanjutnya untuk memulai kelas dapat mengakses https://newvideo.course-net.com/web &lt;br&gt;5.Sertifikat dapat kamu lihat setelah selesai melaksanakan pelatihan bersama Tim Course-Net &lt;br&gt; 6. Kamu wajib mengisi ulasan serta rating apabila kamu sudah menyelesaikan kelas ini.&lt;br&gt;&lt;br&gt; Apabila ada pertanyaan lebih lanjut kamu dapat menghubungi: &lt;br&gt;CS Admin Course-Net: 0821-1707-0291&lt;br&gt;Jam Kerja: Senin sd Jumat (09:00 sd 17:00 WIB) Sabtu (09:00 sd 14:00 WIB)",
+                                            "courseName": "Dasar Pembuatan Aplikasi Android",
+                                            "courseSerial": "PROG-4UWJDFIW",
+                                            "createdAt": "0001-01-01 00:00:00 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/358x225-Video-Dasar_Pembuatan_Aplikasi_Android.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "Course-Net Indonesia didirikan oleh seorang anak muda milenial pada tahum 2015. Berbekal prestasi cumlude semasa kuliah, juara kompetisi networking tingkat nasional dan berhasil masuk ke perusahaan ICT Consultant no 1 di Indonesia sebelum lulus kuliah, ia adalah Alvin. Alvin menyadari pentingnya seorang IT people untuk memiliki specific skill. Selain itu, penting bagi setiap IT people untuk punya seorang coach yang berpengalaman agar mampu beradaptasi dan berkontribusi secara maksimal dalam perusahaan. Oleh karena itu Alvin memiliki ide gila untuk mengumpulkan seluruh praktisi terbaik dengan background 3P (Praktisi, Punya Sertifikasi, Pretasi Tingkat Dunia). Tagline IT is FUN merupakan ciri khas dari Course-Net Indonesia dibuat semi-cowboy, FUN dan Praktis sehingga setiap IT people yang belajar mampu menyerap ilmu yang sifatnya best practice di dunia pekerjaan, bukan hanya teori saja. Hingga saat ini Course-Net telah menghasilkan 7000++lulusan dan mendapatkan penghargaan sebagai #1 Practical IT Coaching di ECC Global Award Atlanta USA.",
+                                                    "jobTitle": "Lembaga Kursus Programming",
+                                                    "name": "Course-Net",
+                                                    "profilePicture": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Course-Net_Logo.png"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "",
+                                            "introductionVideoURL": "",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "KOTA JAKARTA BARAT"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-JU7H1D49",
+                                            "price": 200000,
+                                            "rating": 0,
+                                            "slug": "dasar-pembuatan-aplikasi-android",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "0001-01-01 00:00:00 +0000 UTC"
+                                        },
+                                        {
+                                            "basePrice": 100000,
+                                            "categories": [],
+                                            "courseDescription": "Didalam kelas ini pembelajaran akan disampaikan dalam bentuk  Video Pembelajaran. Kamu akan mempelajari Memahami  Rebonding System Hydroprisma Teknologi Pembentukan Rambut  Generasi Baru Pertama di Dunia yaitu Moisturizing Straight Melalui kursus ini.&lt;br&gt;&lt;br&gt; Selain itu, kamu akan diajak untuk mengetahui teknik dasar Permanent Styling Moisturizing Straight dalam menerapkan service rambut untuk mendapatkan kesempurnaan pelurusan rambut dengan tingkat kelembutan, kehalusan, kilau &amp; kelembaban yang menawan&lt;br&gt;&lt;br&gt;Teknik Dasar Moisturizing Straight  membahas tentang Skill dasar untuk Rebonding atau Pelurusan Rambut, yaitu: &lt;br&gt;1.Menggali pengetahuan dasar tentang semua proses aplikasi&lt;br&gt;2.Aplikasi Hydroprisma Step 1 : Straightening Cream&lt;br&gt;3.Aplikasi Hydroprisma Step 2 : Pelurusan Rambut&lt;br&gt;Dijelaskan pula mengenai product aplikasi menggunakan Hydroprisma yang mampu memberikan kelembaban masuk hingga ke dalam rambut sehingga menghasilkan :&lt;br&gt;1.Hasil yang natural&lt;br&gt;2.Perlindungan maksimal rambut dari kerusakan &lt;br&gt;3.Pantulan prismatic&lt;br&gt;4.Aroma yang segar&lt;br&gt;&lt;br&gt;Nama Instruktur : Arfan Sunoto&lt;br&gt;Tittle : Senior Educator Makarizo Professional&lt;br&gt;Latar belakang kualifikasi nya dalam&lt;br&gt;1.Sertifikat Color dari My Salon Training Centre&lt;br&gt;2.Sertifikat Perming dari My Salon Training Centre&lt;br&gt;3.Sertifikat Academy dari My Salon Training Centre&lt;br&gt;4.Sertifikat Profesi Hair Stylist dari BNSP&lt;br&gt;&lt;br&gt;Arfan Sunoto telah terjun dalam dunia tata rias rambut pada tahun 2004, dan telah memiliki total 17 tahun pengalaman dalam industri tata rias rambut. Arfan Sunoto juga berpengalaman dalam melakukan seminar dan talk show pendidikan dengan kapasitas siswa dari hingga ratusan siswa, berpengalaman dalam pengembangan modul dan pengembangan teknis&lt;br&gt;&lt;br&gt;&lt;b&gt;PERHATIAN&lt;/b&gt;&lt;br&gt;1.Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun&lt;br&gt;2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan&lt;br&gt;3. Program pelatihan yang dibeli tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat&lt;br&gt;&lt;br&gt;&lt;b&gt;Cara Redeem Voucher:&lt;/b&gt;&lt;br&gt;1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher Kamu, &lt;br&gt; 2. Isi data diri kamu pada form berikut: https://bit.ly/KelasMakarizo  &lt;br&gt; 3. Setelah mengisi form tersebut, silahkan anda Akses link bit.ly/Panduan-Makarizo untuk memulai pelatihan. &lt;br&gt; 4. Sertifikat dapat kamu lihat setelah selesai melaksanakan pelatihan bersama Tim Makarizo &lt;br&gt; 5. Kamu wajib mengisi ulasan serta rating apabila kamu sudah menyelesaikan kelas ini.",
+                                            "courseName": "Teknik Dasar Moisturizing Straight",
+                                            "courseSerial": "PROG-ELWPDD74",
+                                            "createdAt": "0001-01-01 00:00:00 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Background_Makarizo_Moist.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "Makarizo dibawah naungan PT Akasha Wira International Tbk merupakan salah satu perusahaan Consumer Goods Indonesia yang berkembang melalui terobosan inovatif, sebagai produsen Nestlé® Pure Life® dan Vica Royal di bawah lini bisnis minuman dan produsen produk perawatan kecantikan dengan merek dagang Makarizo®",
+                                                    "jobTitle": "Makarizo Professional Institute",
+                                                    "name": "Makarizo",
+                                                    "profilePicture": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Logo_Makarizo_New.png"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "",
+                                            "introductionVideoURL": "",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "KOTA JAKARTA SELATAN"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-789PNZO8",
+                                            "price": 100000,
+                                            "rating": 0,
+                                            "slug": "teknik-dasar-moisturizing-straight",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "0001-01-01 00:00:00 +0000 UTC"
+                                        },
+                                        {
+                                            "basePrice": 150000,
+                                            "categories": [],
+                                            "courseDescription": "Jadwal Pelatihan : Setiap Senin Jam 09.00 &amp; Jam 10.00&lt;br&gt;Durasi: 40 Menit x 2 sesi&lt;br&gt;Level: Beginner&lt;br&gt;Platform: Zoom/ Google Meet&lt;br&gt;Kuota:15 orang&lt;br&gt;&lt;br&gt;Di kelas Jurus cepat menguasai kanji dasar, peserta akan mempelajari 100 kanji dasar, cara menulis, cara baca, dan juga contoh-contoh dalam kalimatnya. Di kelas ini peserta akan mendapatkan e-modul yang berisi list 100 kanji beserta contoh-contohnya &lt;br&gt;&lt;br&gt; Kamu akan dibimbing langsung oleh &lt;b&gt;Dewi Karunia Widiyaningrum&lt;/b&gt; yang saat ini aktif sebagi pengajar Bahasa Jepang di LPK Kizuna Mitra Indonesia. &lt;br&gt;Latar belakang pendidikan S1 Sastra Jepang (bersertifikasi JLPT N3 &amp; BNSP level 3).&lt;br&gt;&lt;br&gt;Yuk bergabung di kelas ini! &lt;br&gt;&lt;br&gt;&lt;b&gt;PERHATIAN&lt;/b&gt;&lt;br&gt;1.Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun&lt;br&gt;2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan&lt;br&gt;3. Program pelatihan yang dibeli tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat&lt;br&gt;&lt;br&gt;&lt;b&gt;Cara Redeem Voucher:&lt;/b&gt;&lt;br&gt;1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher Kamu, &lt;br&gt; 2. Isi data diri kamu pada form berikut: https://bit.ly/KelasKizuna  &lt;br&gt; 3. Setelah mengisi form tersebut, silahkan anda tunggu konfirmasi 2x24 jam dari pihak Kizuna Mitra Indonesia untuk pelaksanaan kelas. &lt;br&gt; 4. Sertifikat dapat kamu lihat setelah selesai melaksanakan pelatihan bersama Tim Kizuna Mitra Indonesia &lt;br&gt; 5. Kamu wajib mengisi ulasan serta rating apabila kamu sudah menyelesaikan kelas ini.",
+                                            "courseName": "Jurus Cepat Menguasai Kanji Dasar",
+                                            "courseSerial": "PROG-PM9OKCT8",
+                                            "createdAt": "0001-01-01 00:00:00 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Background_Kizuna_Kanji.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "Kizuna Mitra Indonesia adalah sebuah lembaga yang bergerak dibidang pendidikan Bahasa Jepang dengan memanfaatkan pengalaman selama tinggal di jepang dan juga di support oleh tenaga ajar lulusan dari  universitas terbaik dengan jurusan bahasa jepang. Kizuna Mitra Indonesia, telah berdiri sejak April 2018 di Semarang, Jawa Tengah, Indonesia dan mulai mengembangkan bisnis Pendidikan dan Pelatihan sejak Agustus 2019.Kami berharap mampu berkontribusi untuk membangun dan menciptakan lahan kerja baru untuk wilayah pada khususnya dan wiliayan Indonesia pada umumnya dan membantu memecahkan masalah kekurangan dan kesulitan tenaga kerja di Negara Jepang. Keunggulan Pendidikan kami lebih mengutamakan pengajaran menggunakan metode demonstrasi (pembelajaran dengan mempraktekkan), metode debat (meningkatkan kemampuan akademik siswa), metode Role Playing (cara penguasaan bahan pelajaran melalui pengembangan imajinasi dan penghayatan), metode problem solving (pemecahan masalah.",
+                                                    "jobTitle": "Lembaga Kursus Jepang",
+                                                    "name": "Kizuna Mitra Indonesia",
+                                                    "profilePicture": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Logo__Kizuna_Kanji.png"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "",
+                                            "introductionVideoURL": "",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "KOTA SEMARANG"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-0JNK84M1",
+                                            "price": 150000,
+                                            "rating": 0,
+                                            "slug": "jurus-cepat-menguasai-kanji-dasar",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "0001-01-01 00:00:00 +0000 UTC"
+                                        },
+                                        {
+                                            "basePrice": 399999,
+                                            "categories": [],
+                                            "courseDescription": "Kelas ini dalam bentuk video pelatihan, didesain untuk mengajarkan akuntansi dasar untuk perusahaan kecil. Peserta akan diajarkan membaca dan memahami laporan keuangan, melakukan rekonsiliasi bank, dan mengerjakan praktik terkait studi kasus yang akan diberikan. &lt;br&gt;&lt;br&gt;&lt;b&gt;PERHATIAN&lt;/b&gt;&lt;br&gt;1.Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun&lt;br&gt;2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan&lt;br&gt;3. Program pelatihan yang dibeli tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat. &lt;br&gt;&lt;br&gt; &lt;b&gt;Cara Redeem Voucher:&lt;/b&gt; &lt;br&gt; 1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher kamu. &lt;br&gt; 2. Lalu setelah itu, daftarkan diri kamu dan masukkan kode voucher di link http://bit.ly/KelasEduSolve  &lt;br&gt; 3. Tim MyEduSolve akan menghubungi kamu untuk pelaksanaan kelas.",
+                                            "courseName": "Video Pelatihan: Akuntansi Dasar untuk UMKM",
+                                            "courseSerial": "PROG-79UF5FND",
+                                            "createdAt": "0001-01-01 00:00:00 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/MyEduSolve_Image.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "MyEduSolve is an edu-tech company focused on transforming Indonesia workforce through digital literacy. We offer a range of products which includes internationally recognized certifications, course preparations and digital literacy training.",
+                                                    "jobTitle": "Design Grafis, Dasar UMKM, Public Speaking",
+                                                    "name": "MyEduSolve",
+                                                    "profilePicture": "https://skillacademy-prod-image.skillacademy.com/offline-marketplace/Icon+MyEduSolve.png"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "",
+                                            "introductionVideoURL": "",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "KOTA JAKARTA BARAT"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-VLIIJTKR",
+                                            "price": 399999,
+                                            "rating": 0,
+                                            "slug": "video-pelatihan-akuntansi-dasar-untuk-umkm",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "0001-01-01 00:00:00 +0000 UTC"
+                                        },
+                                        {
+                                            "basePrice": 350000,
+                                            "categories": [],
+                                            "courseDescription": "Hii learners, mau berkarir di bidang IT? Mau punya gaji besar? Bermimpi membangun karir sebagai seorang apps developer tapi bingung harus mulai dari mana? &lt;br&gt;&lt;br&gt; Sudah cari banyak sumber di internet tapi pusing sendiri karena materi yang acak-acakan dan tidak terstruktur?&lt;br&gt;Jika hati kecil anda berkata YA, Anda berada di tempat yang tepat. &lt;br&gt;&lt;br&gt; Apps Developer merupakan salah satu profesi paling menjanjikan saat ini dengan gaji puluhan juta rupiah per bulan. &lt;br&gt; KEMBANGKAN SKILL ANDA SEKARANG JUGA!! &lt;br&gt;&lt;br&gt; Ikuti kelas Teknik Coding Dasar Untuk Menjadi Apps Developer Bersama &lt;b&gt;COACH KELAS DUNIA&lt;/b&gt; yang akan membimbing anda untuk memiliki pengetahuan dasar dan memperdalam logika pemrograman untuk menjadi seorang application developer. Ilmu yang didapat melalui program Teknik Coding Dasar Untuk Menjadi Apps Developer, dapat diterapkan untuk pembuatan aplikasi apapun. Ini merupakan skill dasar yang wajib dimiliki oleh seorang application developer. &lt;br&gt;&lt;br&gt;Ketika anda melamar sebagai application developer, pengetahuan basic programming inilah yang pasti di test pada fase pertama technical interview &lt;br&gt;&lt;br&gt; Setelah mengikuti pelatihan ini anda akan : &lt;br&gt; 1. Memahami logika pemrograman yang wajib dimiliki oleh seorang application developer&lt;br&gt; 2.Memiliki algoritma berpikir yang lebih sistematis sehingga mampu membuat aplikasi yang efektif dan efisien &lt;br&gt; 3. emahami dasar untuk menjadi seorang programmer&lt;br&gt;&lt;br&gt; Cocok bagi mereka yang ingin menjadi seorang application developer sama sekali tidak ada gambaran dan mau belajar dari basic.&lt;br&gt; Mereka yang baru lulus SMA dan memiliki minat untuk kuliah di bidang IT. TIdak perlu dasar apapun untuk mengikuti kelas ini, semua akan diajarkan dari basic. &lt;br&gt;&lt;b&gt;BELAJAR DARI DASAR. 1x BAYAR DIJAMIN BELAJAR SAMPAI BISA.&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Materi Pelatihan&lt;/b&gt;&lt;br&gt; 1. Sintaks I/O dan variabel &lt;br&gt; 2. Operasi aritmatika&lt;br&gt; 3. Selection &lt;br&gt; 4. Repetition&lt;br&gt; 5.Array &amp; Pointer&lt;br&gt; 6. Function &lt;br&gt; 7. Built-in function&lt;br&gt; 8. Recursive &amp; Struct &lt;br&gt; 9. File &lt;br&gt; 10. Sorting &amp; Searching&lt;br&gt;&lt;br&gt; Yuk bergabung di kelas ini! Catat ya…. program ini didukung oleh Course-Net yang merupakan #1 Practical IT Coaching yang memenangkan penghargaan internasional dalam 2 tahun berturut-turut (ECC Global Award Atlanta USA 2019 &amp; The Most Impactful IT Coaching 2020). Jadi, jangan lewatkan!&lt;br&gt;&lt;br&gt;&lt;b&gt;PERHATIAN&lt;/b&gt;&lt;br&gt;1.Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun&lt;br&gt;2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan&lt;br&gt;3. Program pelatihan yang dibeli tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat&lt;br&gt;&lt;br&gt;&lt;b&gt;Cara Redeem Voucher:&lt;/b&gt;&lt;br&gt;1. Setelah selesai melakukan pembelian, kunjungi halaman \"Kelas Saya\" untuk melihat kode voucher Kamu, &lt;br&gt; 2. Isi data diri kamu pada form berikut: http://bit.ly/KelasCourseNet &lt;br&gt; 3.Lakukan redeem voucher menggunakan kode voucher yang tadi muncul ke COURSE NET INDONESIA dengan masukan data diri lengkap di https://newvideo.course-net.com/web/index.php?r=redeem &lt;br&gt; 4. Setelah berhasil redeem voucher, langkah selanjutnya untuk memulai kelas dapat mengakses https://newvideo.course-net.com/web &lt;br&gt;5.Sertifikat dapat kamu lihat setelah selesai melaksanakan pelatihan bersama Tim Course-Net &lt;br&gt; 6. Kamu wajib mengisi ulasan serta rating apabila kamu sudah menyelesaikan kelas ini.&lt;br&gt;&lt;br&gt; Apabila ada pertanyaan lebih lanjut kamu dapat menghubungi: &lt;br&gt;CS Admin Course-Net: 0821-1707-0291&lt;br&gt;Jam Kerja: Senin sd Jumat (09:00 sd 17:00 WIB) Sabtu (09:00 sd 14:00 WIB)",
+                                            "courseName": "Teknik Coding Dasar Untuk Menjadi Apps Developer",
+                                            "courseSerial": "PROG-MTC6UY4U",
+                                            "createdAt": "0001-01-01 00:00:00 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/358x225-VIDEO-Teknik_Coding_Dasar_Untuk_Menjadi_Apps_Developer.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "Course-Net Indonesia didirikan oleh seorang anak muda milenial pada tahum 2015. Berbekal prestasi cumlude semasa kuliah, juara kompetisi networking tingkat nasional dan berhasil masuk ke perusahaan ICT Consultant no 1 di Indonesia sebelum lulus kuliah, ia adalah Alvin. Alvin menyadari pentingnya seorang IT people untuk memiliki specific skill. Selain itu, penting bagi setiap IT people untuk punya seorang coach yang berpengalaman agar mampu beradaptasi dan berkontribusi secara maksimal dalam perusahaan. Oleh karena itu Alvin memiliki ide gila untuk mengumpulkan seluruh praktisi terbaik dengan background 3P (Praktisi, Punya Sertifikasi, Pretasi Tingkat Dunia). Tagline IT is FUN merupakan ciri khas dari Course-Net Indonesia dibuat semi-cowboy, FUN dan Praktis sehingga setiap IT people yang belajar mampu menyerap ilmu yang sifatnya best practice di dunia pekerjaan, bukan hanya teori saja. Hingga saat ini Course-Net telah menghasilkan 7000++lulusan dan mendapatkan penghargaan sebagai #1 Practical IT Coaching di ECC Global Award Atlanta USA.",
+                                                    "jobTitle": "Lembaga Kursus Programming",
+                                                    "name": "Course-Net",
+                                                    "profilePicture": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Course-Net_Logo.png"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "",
+                                            "introductionVideoURL": "",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "KOTA JAKARTA BARAT"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-JU7H1D49",
+                                            "price": 350000,
+                                            "rating": 0,
+                                            "slug": "teknik-coding-dasar-untuk-menjadi-apps-developer",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "0001-01-01 00:00:00 +0000 UTC"
+                                        },
+                                        {
+                                            "basePrice": 350000,
+                                            "categories": [],
+                                            "courseDescription": "Di dalam kelas ini pembelajaran akan disampaikan dalam bentuk Video Pembelajaran. &lt;br&gt;Durasi: 60 Menit &lt;br&gt; Participants: Siapa saja yang ingin belajar menulis, menjadi penulis lepas, terjun menjadi wartawan, atau hanya ingin memahami dunia jurnalistik (umum: pencari kerja, mahasiswa, karyawan, tenaga hubungan masyarakat,wartawan)&lt;br&gt;Level: Beginner-Intermediate &lt;br&gt;Platform: Platform Kompas Institute di Ruangkerja.&lt;br&gt;Peserta akan mengakses Video Mandiri Kompas Institute melalui Ruangkerja (website atau aplikasi)&lt;br&gt;Admin Kompas Institute akan mendaftarkan data pembeli setelah peserta menyelesaikan pembelian (1 hari kerja, Senin-Jumat pukul 08.00-17.00).&lt;br&gt;Kemudian peserta akan mendapatkan e-mail notifikasi dari Ruangkerja cara mengakses Video Mandiri Kompas Institute.&lt;br&gt;&lt;br&gt;Dalam berbagai platform pemberitaan sekarang, media mainstream tetap menjadi rujukan karena pengalaman dan reputasinya. Karena itu, belajar jurnalistik langsung dengan para ahlinya di Redaksi Kompas, adalah pilihan terbaik untuk mengasah kemampuan melaporkan peristiwa menjadi berita, feature, hingga membuat liputan mendalam.&lt;br&gt;Bersama para wartawan Kompas sebagai pengajar, peserta ”Seri Belajar Jurnalistik” tidak sekadar mampu mengaplikasikan kiat-kiat untukmenulis di blog, media sosial, dan berbagai media lainnya, tetapi juga paham bahasa, kaidah, dan etika jurnalistik.&lt;br&gt;&lt;br&gt; Di kelas Jurnalistik Dasar, peserta akan mendapat pemahaman dasar yang lengkap, mulai dari filosofi dan elemen-elemen jurnalisme dasar hingga cara melahirkan produk jurnalistik yang dilengkapi beberapa contoh. &lt;br&gt;1.Pengertian, Filosofi &amp; Element Jurnalis&lt;br&gt;2.Melahirkan Produk Jurnalistik &lt;br&gt;3.Jurnalisme tidak boleh bohong&lt;br&gt;4. Aturan Jurnalistik dan Ragam Bahasa Jurnalistik &lt;br&gt;&lt;br&gt;Di dalam kelas ini, kamu akan dibimbing oleh Bpk. Paulus Tri Agung Kristanto yang saat ini menjabat sebagai Wakil Pemimpin Redaksi Harian Kompas dan dengan pengalaman sebagai :&lt;br&gt;1. Dewan Kehormatan Pengurus Pusat Persatuan&lt;br&gt;2. Wartawan Indonesia (PWI)&lt;br&gt;3.  Penasihat Forum Bahasa Media Massa (FBMM)&lt;br&gt;4. Penulis dan editor sejumlah buku&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Yuk bergabung di kelas ini! Catat ya…. program ini didukung oleh Kompas Institute yang sudah berpengalaman di bidang jurnalistik. Jadi, jangan lewatkan!&lt;b&gt;PERHATIAN&lt;/b&gt;&lt;br&gt;1.Jika terjadi kesalahan dalam pembelian, pihak Skill Academy tidak melayani pengembalian dana (refund) dengan alasan apapun&lt;br&gt;2. Sebelum membeli, harap baca deskripsi program dengan saksama, khususnya jadwal pelatihan&lt;br&gt;3. Program pelatihan yang dibeli tidak dapat dipindahtangankan. Jika terjadi hal tersebut, pihak penyelenggara pelatihan berhak untuk tidak memberikan sertifikat&lt;br&gt;&lt;br&gt;&lt;b&gt;Cara Akses Kelas:&lt;/b&gt;&lt;br&gt;1. Akses kelas Video Mandiri Kompas Institute ini melalui Ruangkerja (website dan/atau  aplikasi) &lt;br&gt; 2. Setelah peserta selesai melakukan pembelian, data peserta akan dimasukkan ke Ruangkerja oleh admin Kompas Institute &lt;br&gt; 3. Peserta akan mendapatkan e-mail notifikasi dari Ruangkerja tentang cara mengakses Video Mandiri Kompas Institute serta e-mail user dan password. &lt;br&gt; 4. Peserta masuk Ruangkerja dengan e-mail user dan password yang diberikan dan silakan memulai pelatihan. &lt;br&gt; 5. Peserta mendapatkan sertifikat di Ruangkerja setelah selesai melaksanakan pelatihan bersama Tim Kompas Institute. &lt;br&gt; 6. Kamu wajib mengisi ulasan serta rating apabila kamu sudah menyelesaikan kelas ini.&lt;br&gt;&lt;br&gt;&lt;b&gt;Untuk informasi lebih lanjut dan terkait layanan, peserta dapat menghubungi:&lt;br&gt;Email: hotline@kompas.id&lt;br&gt;Whatsapp: 0812-900-50-800&lt;br&gt;Jam kerja: Senin-Jumat (06.00-17.00 WIB)",
+                                            "courseName": "Seri Kelas Jurnalistik: Kelas Jurnalistik Dasar",
+                                            "courseSerial": "PROG-17E3EY9O",
+                                            "createdAt": "0001-01-01 00:00:00 +0000 UTC",
+                                            "imageUrl": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Background_Image.jpg",
+                                            "instructors": [
+                                                {
+                                                    "description": "Kompas Institute merupakan wadah berbagai pelatihan sebagai bagian dari partisipasi Kompas untuk turut serta mencerdaskan masyarakat. Melalui Kompas Institute, akumulasi pengetahuan dan keterampilan bisa dibagikan kepada masyarakat secara lebih terukur, terstruktur, sekaligus juga terencana dan profesional.",
+                                                    "jobTitle": "Kompas Institute Education",
+                                                    "name": "Kompas Institute",
+                                                    "profilePicture": "https://skillacademy-prod.s3.ap-southeast-1.amazonaws.com/offline-marketplace/Logo_Kompas.jpg"
+                                                }
+                                            ],
+                                            "introductionVideoThumbnailURL": "",
+                                            "introductionVideoURL": "",
+                                            "isSubscribed": false,
+                                            "location": [
+                                                "KOTA JAKARTA BARAT"
+                                            ],
+                                            "marketType": "OFFLINE",
+                                            "merchantSerial": "MERC-9PALR46M",
+                                            "price": 350000,
+                                            "rating": 0,
+                                            "slug": "seri-kelas-jurnalistik-kelas-jurnalistik-dasar",
+                                            "tags": [],
+                                            "totalRating": 0,
+                                            "transactional": "TRANSACTIONABLE_YES",
+                                            "updatedAt": "0001-01-01 00:00:00 +0000 UTC"
+                                        }
+                                    ]
+                                },
+                                "page": {
+                                    "type": "integer",
+                                    "default": 1
+                                },
+                                "pageSize": {
+                                    "type": "integer",
+                                    "default": 10
+                                },
+                                "recommendationID": {
+                                    "type": "string",
+                                    "default": "v0"
+                                },
+                                "searchAlgoID": {
+                                    "type": "string",
+                                    "default": "v3"
+                                },
+                                "totalCourse": {
+                                    "type": "integer",
+                                    "default": 153
+                                },
+                                "totalPage": {
+                                    "type": "integer",
+                                    "default": 16
+                                }
+                            },
+                            "required": [
+                                "data",
+                                "page",
+                                "pageSize",
+                                "recommendationID",
+                                "searchAlgoID",
+                                "totalCourse",
+                                "totalPage"
+                            ]
+                        },
+                        "status": {
+                            "type": "string",
+                            "default": "success",
+                            "enum": [
+                                "success"
+                            ]
+                        },
+                        "message": {
+                            "type": "string",
+                            "default": "success",
+                            "enum": [
+                                "success"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "data",
+                        "message",
+                        "status"
+                    ]
+                }
+            }
+        }
+    }
+}</msg>
+<status status="PASS" starttime="20211126 01:07:09.216" endtime="20211126 01:07:09.394"/>
 </kw>
-<kw name="Close Browser" library="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20211126 00:07:17.552" endtime="20211126 00:07:19.863"/>
-</kw>
-<doc>This test case verifies that user is able to search courses available in SkillAcademy</doc>
-<tag>Smoke Test</tag>
-<status status="PASS" starttime="20211126 00:07:05.990" endtime="20211126 00:07:19.864"/>
+<status status="FAIL" starttime="20211126 01:07:07.344" endtime="20211126 01:07:09.394">'Webinar : Basic Program' does not contain 'perkenalan dasar program abap'</status>
 </test>
-<doc>Search Course Feature test in SkillAcademy</doc>
-<status status="PASS" starttime="20211126 00:07:05.521" endtime="20211126 00:07:19.868"/>
+<status status="FAIL" starttime="20211126 01:07:05.275" endtime="20211126 01:07:09.394"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="1" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">Smoke Test</stat>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="TestSearch">TestSearch</stat>
+<stat pass="1" fail="1" skip="0" id="s1" name="TestSearchAPI">TestSearchAPI</stat>
 </suite>
 </statistics>
 <errors>
