@@ -6,7 +6,7 @@ KategoriDropdown = "//div[@data-testid='dropdown-category']/p"
 SearchInput = "//input[@data-testid='search-input-field']"
 SearchButton = "//div[@data-testid='search-icon']"
 ReferralLink = "//a[@href='/referral/detail?scrollTo=&activeTab=']"
-SearchButton = "//div[@data-testid='header-login-button']"
+LoginButton = "//div[@data-testid='header-login-button']"
 
 # Home Page locators
 MenuCategories = "//div[@data-testid='menu-category']"

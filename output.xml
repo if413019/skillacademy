@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.2 (Python 3.9.6 on win32)" generated="20211126 00:07:05.521" rpa="false" schemaversion="2">
+<suite id="s1" name="TestSearch" source="C:\Users\LENOVO\skillacademy\Tests\SkillAcademy\Web\TestSearch.robot">
+<test id="s1-t1" name="Verify successful search on SkillAcademy">
+<kw name="Opening Browser" library="Common">
+<arg>${site_url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${site_url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20211126 00:07:05.994" level="INFO">Opening browser 'Chrome' to base url 'https://skillacademy.com/'.</msg>
+<status status="PASS" starttime="20211126 00:07:05.994" endtime="20211126 00:07:12.396"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20211126 00:07:12.400" endtime="20211126 00:07:13.601"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:05.994" endtime="20211126 00:07:13.601"/>
+</kw>
+<kw name="Wait Until Homepage Successfuly Loaded" library="HomePage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${MenuCategories}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:13.604" endtime="20211126 00:07:14.478"/>
+</kw>
+<timeout value="5 seconds"/>
+<status status="PASS" starttime="20211126 00:07:13.603" endtime="20211126 00:07:14.478"/>
+</kw>
+<kw name="Search For Courses" library="Common">
+<arg>${ValidCourseName}</arg>
+<kw name="Wait Until Navigation Bar Is Visible" library="Common">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${SkillAcademyLogo}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:14.481" endtime="20211126 00:07:14.543"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${EnterpriseLink}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:14.543" endtime="20211126 00:07:14.585"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${PrakerjaLink}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:14.585" endtime="20211126 00:07:14.624"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${KategoriDropdown}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:14.624" endtime="20211126 00:07:14.668"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${SearchInput}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:14.668" endtime="20211126 00:07:14.715"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${SearchButton}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:14.715" endtime="20211126 00:07:14.759"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${ReferralLink}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:14.759" endtime="20211126 00:07:14.802"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${LoginButton}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:14.802" endtime="20211126 00:07:14.853"/>
+</kw>
+<timeout value="5 seconds"/>
+<status status="PASS" starttime="20211126 00:07:14.481" endtime="20211126 00:07:14.853"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${SearchInput}</arg>
+<arg>${keywords}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211126 00:07:14.854" level="INFO">Typing text 'membuat' into text field '//input[@data-testid='search-input-field']'.</msg>
+<status status="PASS" starttime="20211126 00:07:14.854" endtime="20211126 00:07:15.041"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${SearchButton}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20211126 00:07:15.041" level="INFO">Clicking element '//div[@data-testid='search-icon']'.</msg>
+<status status="PASS" starttime="20211126 00:07:15.041" endtime="20211126 00:07:15.221"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:14.478" endtime="20211126 00:07:15.221"/>
+</kw>
+<kw name="Verify Non-Empty Search Result" library="SearchPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${FilterHarga}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:15.226" endtime="20211126 00:07:16.644"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${FilterDurasi}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:16.644" endtime="20211126 00:07:16.686"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${PaginationPerPage}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:16.686" endtime="20211126 00:07:16.802"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${CourseCards}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:16.802" endtime="20211126 00:07:16.852"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${PaginationPrev}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:16.852" endtime="20211126 00:07:16.898"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${PaginationNext}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211126 00:07:16.898" endtime="20211126 00:07:16.942"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${ActualTotalResult}</var>
+<arg>${TotalResult}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20211126 00:07:16.990" level="INFO">${ActualTotalResult} = 194</msg>
+<status status="PASS" starttime="20211126 00:07:16.942" endtime="20211126 00:07:16.990"/>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<var>${ActualTotalResult}</var>
+<arg>${ActualTotalResult}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<msg timestamp="20211126 00:07:16.990" level="INFO">${ActualTotalResult} = 194</msg>
+<status status="PASS" starttime="20211126 00:07:16.990" endtime="20211126 00:07:16.990"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${ActualTotalResult}&gt;0</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20211126 00:07:16.994" endtime="20211126 00:07:16.995"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>${CurrentKeyword}</arg>
+<arg>${ValidCourseName}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20211126 00:07:16.995" level="INFO">Verifying element '//span[@data-testid='current-keyword']' contains exact text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:16.995" endtime="20211126 00:07:17.035"/>
+</kw>
+<kw name="Get WebElements" library="SeleniumLibrary">
+<var>${titles}</var>
+<arg>${CourseTitles}</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<msg timestamp="20211126 00:07:17.056" level="INFO">${titles} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="fd52e6cf-5759-41cc-a33e-479a9abb4b99")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (sessi...</msg>
+<status status="PASS" starttime="20211126 00:07:17.035" endtime="20211126 00:07:17.056"/>
+</kw>
+<for flavor="IN">
+<var>${title}</var>
+<value>@{titles}</value>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="fd52e6cf-5759-41cc-a33e-479a9abb4b99")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.084" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="fd52e6cf-5759-41cc-a33e-479a9abb4b99")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.060" endtime="20211126 00:07:17.084"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.060" endtime="20211126 00:07:17.084"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="80c0a3a2-133a-4f71-acb0-42587f75cadd")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.098" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="80c0a3a2-133a-4f71-acb0-42587f75cadd")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.084" endtime="20211126 00:07:17.098"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.084" endtime="20211126 00:07:17.098"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="7a5a09df-ca38-4ea9-ac46-d68aae554323")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.119" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="7a5a09df-ca38-4ea9-ac46-d68aae554323")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.098" endtime="20211126 00:07:17.119"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.098" endtime="20211126 00:07:17.119"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="71670ac0-9df1-4a21-9444-10742bd88506")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.139" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="71670ac0-9df1-4a21-9444-10742bd88506")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.119" endtime="20211126 00:07:17.139"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.119" endtime="20211126 00:07:17.139"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="51554aa5-3e3d-4ddc-b5e6-2bfa33d2a1eb")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.163" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="51554aa5-3e3d-4ddc-b5e6-2bfa33d2a1eb")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.139" endtime="20211126 00:07:17.163"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.139" endtime="20211126 00:07:17.163"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="e4b91e86-913f-42a0-95d0-7fda56a71db4")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.188" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="e4b91e86-913f-42a0-95d0-7fda56a71db4")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.163" endtime="20211126 00:07:17.188"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.163" endtime="20211126 00:07:17.188"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="269adba9-6253-44dc-9394-908be8af03fa")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.210" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="269adba9-6253-44dc-9394-908be8af03fa")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.189" endtime="20211126 00:07:17.210"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.189" endtime="20211126 00:07:17.210"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="681d1bca-eb4a-4fb7-bd6b-efebd0d680b6")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.235" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="681d1bca-eb4a-4fb7-bd6b-efebd0d680b6")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.214" endtime="20211126 00:07:17.235"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.210" endtime="20211126 00:07:17.235"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="b7871cc4-6b8c-48f5-b0e7-baa814778538")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.257" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="b7871cc4-6b8c-48f5-b0e7-baa814778538")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.235" endtime="20211126 00:07:17.257"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.235" endtime="20211126 00:07:17.257"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="3253e198-854a-40ee-8fb2-f0faba5ee48b")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.282" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="3253e198-854a-40ee-8fb2-f0faba5ee48b")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.257" endtime="20211126 00:07:17.286"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.257" endtime="20211126 00:07:17.286"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="e3a28181-cef1-49e1-a6d0-e976a5c705f5")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.310" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="e3a28181-cef1-49e1-a6d0-e976a5c705f5")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.286" endtime="20211126 00:07:17.310"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.286" endtime="20211126 00:07:17.310"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="d5c0e4aa-cfcb-43eb-83e7-dad1298566fb")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.335" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="d5c0e4aa-cfcb-43eb-83e7-dad1298566fb")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.310" endtime="20211126 00:07:17.335"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.310" endtime="20211126 00:07:17.335"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="4b6eb0c9-c7fd-4f0b-8a6a-532d16267ae3")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.365" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="4b6eb0c9-c7fd-4f0b-8a6a-532d16267ae3")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.335" endtime="20211126 00:07:17.365"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.335" endtime="20211126 00:07:17.365"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="d10dfc64-f4d6-4f0b-b65b-4595eebbb709")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.392" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="d10dfc64-f4d6-4f0b-b65b-4595eebbb709")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.367" endtime="20211126 00:07:17.392"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.365" endtime="20211126 00:07:17.392"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="a39dbcd1-ecee-46e0-b65b-a960733a6dc0")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.416" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="a39dbcd1-ecee-46e0-b65b-a960733a6dc0")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.392" endtime="20211126 00:07:17.416"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.392" endtime="20211126 00:07:17.416"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="e28a7fc6-f9d1-4fa2-b55f-02f710960e78")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.445" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="e28a7fc6-f9d1-4fa2-b55f-02f710960e78")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.416" endtime="20211126 00:07:17.445"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.416" endtime="20211126 00:07:17.445"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="d88ad606-77bf-4790-a348-fed69f59ccdd")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.475" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="d88ad606-77bf-4790-a348-fed69f59ccdd")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.445" endtime="20211126 00:07:17.475"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.445" endtime="20211126 00:07:17.475"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="da8626ed-836d-410d-93c8-3af55275c054")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.497" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="da8626ed-836d-410d-93c8-3af55275c054")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.475" endtime="20211126 00:07:17.497"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.475" endtime="20211126 00:07:17.497"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="2e7c2776-4bc6-47c5-b742-31dd81d59617")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.525" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="2e7c2776-4bc6-47c5-b742-31dd81d59617")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.501" endtime="20211126 00:07:17.525"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.501" endtime="20211126 00:07:17.525"/>
+</iter>
+<iter>
+<var name="${title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="1fb6b6a2-fe5c-4ff3-9e10-36d4b669146d")&gt;</var>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>${title}</arg>
+<arg>${ValidCourseName}</arg>
+<arg>ignore_case=True</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20211126 00:07:17.547" level="INFO">Element '&lt;selenium.webdriver.remote.webelement.WebElement (session="e470bb1397e98fbbed41fafa7179d486", element="1fb6b6a2-fe5c-4ff3-9e10-36d4b669146d")&gt;' contains text 'membuat'.</msg>
+<status status="PASS" starttime="20211126 00:07:17.525" endtime="20211126 00:07:17.551"/>
+</kw>
+<status status="PASS" starttime="20211126 00:07:17.525" endtime="20211126 00:07:17.551"/>
+</iter>
+<status status="PASS" starttime="20211126 00:07:17.056" endtime="20211126 00:07:17.551"/>
+</for>
+<status status="PASS" starttime="20211126 00:07:15.221" endtime="20211126 00:07:17.551"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20211126 00:07:17.552" endtime="20211126 00:07:19.863"/>
+</kw>
+<doc>This test case verifies that user is able to search courses available in SkillAcademy</doc>
+<tag>Smoke Test</tag>
+<status status="PASS" starttime="20211126 00:07:05.990" endtime="20211126 00:07:19.864"/>
+</test>
+<doc>Search Course Feature test in SkillAcademy</doc>
+<status status="PASS" starttime="20211126 00:07:05.521" endtime="20211126 00:07:19.868"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">Smoke Test</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="TestSearch">TestSearch</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
