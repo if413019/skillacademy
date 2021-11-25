@@ -1,0 +1,4 @@
+robotframework>=4.0.2
+robotframework-selenium2library>=1.8.0
+RESTinstance>=1.2.0
+robotframework-browser>=10.0.3
