@@ -9,5 +9,5 @@ Basic page object implementation using robot framework for Skill Academy https:/
 
 - (Optional) create and activate virtual env
 - install all requirements `pip install -r requirements.txt`
-- execute test files `robot Test/SkillAcademy/API/TestSearchAPI.robot` or `robot Test/SkillAcademy/API/TestSearchAPI.robot`
+- execute test files `robot Tests/SkillAcademy/API/TestSearchAPI.robot` or `robot Tests/SkillAcademy/API/TestSearchAPI.robot`
 - observe test result on generated files

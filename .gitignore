@@ -130,3 +130,6 @@ dmypy.json
 
 # Report
 selenium-screenshot*
+log.html
+output.xml
+report.html
